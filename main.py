@@ -1,3 +1,3 @@
 import dev
 
-dev
+print(dev)

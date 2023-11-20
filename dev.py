@@ -13,8 +13,6 @@ from sklearn.metrics import classification_report
 
 df = pd.read_csv("kerala.csv")
 df.describe()
-#df.count()
-#df.info()
 # splitting the dataset to select the features
 X= df.iloc[:,1:14]
 Y= df.iloc[:,-1]
