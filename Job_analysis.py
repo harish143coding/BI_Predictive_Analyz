@@ -7,6 +7,7 @@ step 2 : fetch this data from the db to find KPIs
 from sqlalchemy import URL
 from sqlalchemy import create_engine
 import pandas as pd
+import pyodbc
 
 positions_df = pd.read_excel(io="../applications-flow.xlsx")
 
@@ -35,10 +36,13 @@ url_object = URL.create(
 engine_1 = create_engine(url_object)
 
 # creating engine string in the following method 2
-engine_2 = create_engine("mssql+pyodbc://DESKTOP-PT5IK6F/harish:@localhost/sampledb",
+engine_2 = create_engine("mssql+pyodbc://harish:@DESKTOP-PT5IK6F/sampledb",
                          pool_pre_ping= True
                         )
+# other variant using pyodbc
+engine_3 = pyodbc.connect('Driver = {ODBC Driver 17 for SQL Server};Server=DESKTOP-PT5IK6F;'
+                            'Database=sampledb;Trusted_Connection=yes;')
 
 # Check the connection
-with engine_2.connect() as connection:
-    print("Connection successful!")
+#with engine_3.connect() as connection:
+    #print("Connection successful!")
