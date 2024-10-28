@@ -25,24 +25,25 @@ modified_df = positions_df.loc[:, 'date of apply': 'response']
 print(modified_df.describe())
 
 # insert this dataframe into a table by creating a new table in MS SQL server.
-# -- creating the engine to connect to the database
+# -- creating the engine to connect to the database; Here sample postgresdb is created using the online platform
+# - Clever-cloud
 url_object = URL.create(
-    "mssql+pyodbc",
-    username="DESKTOP-PT5IK6F/harish",
-    host="DESKTOP-PT5IK6F",
-    database="sampledb"
-     )
+    "postgresql+psycopg2",
+    username="ub2owelyy5qfecopz0ti",
+    password="lGIvHaTmAYbziQbWB4vdxMCT5Etnj1",
+    host="b1gnq5ieokuldsatwymf-postgresql.services.clever-cloud.com",
+    port="50013",
+    database="b1gnq5ieokuldsatwymf"
+)
 # creating engine string in the following method 1
-engine_1 = create_engine(url_object)
-
-# creating engine string in the following method 2
-engine_2 = create_engine("mssql+pyodbc://harish:@DESKTOP-PT5IK6F/sampledb",
-                         pool_pre_ping= True
-                        )
-# other variant using pyodbc
-engine_3 = pyodbc.connect('Driver = {ODBC Driver 17 for SQL Server};Server=DESKTOP-PT5IK6F;'
-                            'Database=sampledb;Trusted_Connection=yes;')
+engine_1 = create_engine(url_object)  # this is a postgresql database engine.
 
 # Check the connection
-#with engine_3.connect() as connection:
-    #print("Connection successful!")
+with engine_1.connect() as connection:
+    print("Connection successful!")
+
+#  Loading the data from dataframe to database
+db_insertion = modified_df.to_sql(
+                            name='Apply',
+                            con=engine_1
+)
