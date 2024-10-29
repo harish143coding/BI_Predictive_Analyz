@@ -1,1 +1,3 @@
 /bi_pred/
+# ignore config file
+config.py

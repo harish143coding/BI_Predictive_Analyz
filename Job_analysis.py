@@ -4,46 +4,43 @@ step 1: create a db and load the existing data into the db
 step 2 : fetch this data from the db to find KPIs
 
 """
-from sqlalchemy import URL
-from sqlalchemy import create_engine
 import pandas as pd
+from sqlalchemy import create_engine, URL
+from config import DB_CONFIG
 import pyodbc
 
+# Step 1: Read the Excel file into a DataFrame
 positions_df = pd.read_excel(io="../applications-flow.xlsx")
+print(positions_df.shape)
+print(positions_df.head())
 
-positions_df.shape
-positions_df.head
+# Step 2: Rename columns
+positions_df.rename(columns={
+    "Date": "date of apply",
+    "Position": "Job_role",
+    "company": "company",
+    "Link": "details",
+    "Response": "response"
+}, inplace=True)
 
-# pandas remaining columns
-positions_df.rename(mapper={"Date": "date of apply", "Position": "Job_role",
-                            "company": "company", "Link": "details", "Response": "response"},
-                    axis='columns',
-                    inplace=True)
-
-# original dataframe is modified by removing the null columns
-modified_df = positions_df.loc[:, 'date of apply': 'response']
+# Step 3: Filter DataFrame to only include specified columns
+modified_df = positions_df.loc[:, 'date of apply':'response']
 print(modified_df.describe())
 
-# insert this dataframe into a table by creating a new table in MS SQL server.
-# -- creating the engine to connect to the database; Here sample postgresdb is created using the online platform
-# - Clever-cloud
+# Step 4: Create a database engine connection string using environment variables or config file
 url_object = URL.create(
-    "postgresql+psycopg2",
-    username="ub2owelyy5qfecopz0ti",
-    password="lGIvHaTmAYbziQbWB4vdxMCT5Etnj1",
-    host="b1gnq5ieokuldsatwymf-postgresql.services.clever-cloud.com",
-    port="50013",
-    database="b1gnq5ieokuldsatwymf"
+    drivername=DB_CONFIG["drivername"],
+    username=DB_CONFIG["username"],
+    password=DB_CONFIG["password"],
+    host=DB_CONFIG["host"],
+    port=DB_CONFIG["port"],
+    database=DB_CONFIG["database"]
 )
-# creating engine string in the following method 1
-engine_1 = create_engine(url_object)  # this is a postgresql database engine.
+engine = create_engine(url_object)
 
-# Check the connection
-with engine_1.connect() as connection:
+# Step 5: Verify the database connection
+with engine.connect() as connection:
     print("Connection successful!")
 
-#  Loading the data from dataframe to database
-db_insertion = modified_df.to_sql(
-                            name='Apply',
-                            con=engine_1
-)
+# Step 6: Load the data from DataFrame to the database table
+modified_df.to_sql(name='Apply', con=engine, if_exists='append', index=False)
