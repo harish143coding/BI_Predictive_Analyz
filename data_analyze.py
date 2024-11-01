@@ -16,4 +16,6 @@ query = "SELECT * FROM Apply"
 df = pd.read_sql('Apply', db_engine)
 
 # EDA using dtale
-dtale.show(df)
+data = dtale.show(df)
+data.open_browser()
+# solve this error How to Allow Apps to Communicate Through the Windows Firewall
