@@ -2,7 +2,7 @@
 from sqlalchemy import create_engine
 from config import DB_CONFIG
 import pandas as pd
-import dtale
+import requests
 
 
 
@@ -15,7 +15,22 @@ db_engine = create_engine(url=connection_string)
 query = "SELECT * FROM Apply"
 df = pd.read_sql('Apply', db_engine)
 
-# EDA using dtale
-data = dtale.show(df)
-data.open_browser()
-# solve this error How to Allow Apps to Communicate Through the Windows Firewall
+
+# Data Cleaning/Enhancing: improve the quality of the data in the frame
+# replacing the 'None' values in between the timestamps with preceding time stamp.
+df['date of apply'].fillna('ffill', inplace=True)
+
+# finding the company location and adding that to new column
+
+def get_company_location(company_name):
+    url = "https://handelsregister-api.de/api/companies"
+    params = {"company_name": company_name}
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.json()["location"]
+    else:
+        return None
+
+df['Location'] = df['Company Name'].apply(get_company_location)
+
+# implement the above function and check.
