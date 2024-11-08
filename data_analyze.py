@@ -1,9 +1,9 @@
 # here fetch the data from the database and perform analysis using Pandas, D-Tale
-from sqlalchemy import create_engine
+from bs4 import BeautifulSoup
 from config import DB_CONFIG
+from sqlalchemy import create_engine
 import pandas as pd
 import requests
-
 
 
 connection_string = (f'{DB_CONFIG["drivername"]}://{DB_CONFIG["username"]}:{DB_CONFIG["password"]}@{DB_CONFIG["host"]}:{DB_CONFIG["port"]}'
@@ -21,20 +21,79 @@ df = pd.read_sql('Apply', db_engine)
 df['date of apply'].fillna('ffill')
 
 # finding the company location and adding that to new column
-
-
 def get_company_location(company_name):
-    url = "https://search.infobelpro.com/germany/en/api/search"
-    headers = {"Content-Type": "application/json"}
-    payload = {"company_name": company_name}
-    response = requests.post(url, headers=headers, json=payload)
-    if response.status_code == 200:
-        return response.json()["location"]
-    else:
+    if pd.isna(company_name) or company_name.strip() == "":
+        return "Company name missing"
+    search_url = f"https://en.wikipedia.org/wiki/{company_name.replace(' ', '_')}"
+    response = requests.get(search_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Locate the infobox and search for location information
+    try:
+        infobox = soup.find('table', {'class': 'infobox vcard'})
+        location = infobox.find('td', {'class': 'label'}, text='Headquarters').find_next_sibling('td').text.strip()
+        return location
+    except AttributeError:
         return "Location not found"
 
 
-df['Location_1'] = df['company'].apply(get_company_location)
+# Apply the function to get company locations
+#df['Location'] = df['company'].apply(get_company_location)
+
+print(df)
+
+# Trying to find the company from the job URL
+def parse_company_info(url):
+    if pd.isna(url) or url.strip() == "":
+        return "URL missing", "URL missing"
+
+    try:
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        # Example for 'indeed.com'
+        if "indeed.com" in url:
+            try:
+                company_name = soup.find('div', {'class': 'icl-u-lg-mr--sm icl-u-xs-mr--xs'}).text.strip()
+                location = soup.find('div', {'class': 'jobsearch-InlineCompanyRating'}).find_next_sibling(
+                    'div').text.strip()
+                return company_name, location
+            except AttributeError:
+                return "Company name not found", "Location not found"
+
+        # Example for 'glassdoor.com'
+        elif "glassdoor.com" in url:
+            try:
+                company_name = soup.find('div', {'class': 'css-16nw49e e11nt52q1'}).text.strip()
+                location = soup.find('div', {'class': 'css-56kyx5 e1tk4kwz5'}).text.strip()
+                return company_name, location
+            except AttributeError:
+                return "Company name not found", "Location not found"
+
+        # Default case for unknown structures
+        else:
+            return "Unknown structure", "Unknown structure"
+
+    except requests.exceptions.RequestException:
+        return "Error accessing URL", "Error accessing URL"
+
+
+# Sample DataFrame with URLs
+data = {
+    'job_url': [
+        'https://www.indeed.com/viewjob?jk=123456',
+        None,  # Example of an empty URL field
+        'https://www.glassdoor.com/job-listing/sample-job-id-JV_IC12345.htm'
+    ]
+}
+df = pd.DataFrame(data)
+
+# Apply the function to parse company info
+df[['Company_URL', 'Location_URL']] = df['job_url'].apply(lambda x: pd.Series(parse_company_info(x)))
+
+print(df)
+
 print(df.head())
 print(df.info())
+#print(df['Location'].nunique())
 # implement the above function and check... shoud be worked on further.
