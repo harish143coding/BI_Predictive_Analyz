@@ -15,7 +15,6 @@ db_engine = create_engine(url=connection_string)
 query = "SELECT * FROM Apply"
 df = pd.read_sql('Apply', db_engine)
 
-
 # Data Cleaning/Enhancing: improve the quality of the data in the frame
 # replacing the 'None' values in between the timestamps with preceding time stamp.
 df['date of apply'].fillna('ffill')
@@ -36,13 +35,10 @@ def get_company_location(company_name):
     except AttributeError:
         return "Location not found"
 
-
-# Apply the function to get company locations
+# Apply the function to get company locations using the company name
 #df['Location'] = df['company'].apply(get_company_location)
 
-print(df)
-
-# Trying to find the company from the job URL
+# Trying to find the company from the job URL information
 def parse_company_info(url):
     if pd.isna(url) or url.strip() == "":
         return "URL missing", "URL missing"
@@ -78,18 +74,8 @@ def parse_company_info(url):
         return "Error accessing URL", "Error accessing URL"
 
 
-# Sample DataFrame with URLs
-data = {
-    'job_url': [
-        'https://www.indeed.com/viewjob?jk=123456',
-        None,  # Example of an empty URL field
-        'https://www.glassdoor.com/job-listing/sample-job-id-JV_IC12345.htm'
-    ]
-}
-df = pd.DataFrame(data)
-
 # Apply the function to parse company info
-df[['Company_URL', 'Location_URL']] = df['job_url'].apply(lambda x: pd.Series(parse_company_info(x)))
+df[['Company_URL', 'Location_URL']] = df['details'].apply(lambda x: pd.Series(parse_company_info(x)))
 
 print(df)
 
