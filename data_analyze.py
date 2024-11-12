@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 from config import DB_CONFIG
 from sqlalchemy import create_engine
+from TESTER import get_location_geopy
 import pandas as pd
 import requests
 
@@ -75,9 +76,8 @@ def parse_company_info(url):
 
 
 # Apply the function to parse company info
-df[['Company_URL', 'Location_URL']] = df['details'].apply(lambda x: pd.Series(parse_company_info(x)))
+df[['Address', 'Latitude', 'Longitude']] = df['details'].apply(lambda x: pd.Series(get_location_geopy(x)))
 
-print(df)
 
 print(df.head())
 print(df.info())
