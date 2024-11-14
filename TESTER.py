@@ -7,9 +7,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import time
 
-
 # Initialize the geolocator
 geolocator = Nominatim(user_agent="company_locator")
+
 
 def search_company_address(company_name):
     try:
@@ -38,6 +38,7 @@ def search_company_address(company_name):
     except Exception as e:
         return "Error during web search"
 
+
 def get_location(company_name):
     address = search_company_address(company_name)
     if "Address not found" in address or "Error" in address:
@@ -52,8 +53,6 @@ def get_location(company_name):
     except Exception as e:
         return "Error during geocoding", None, None
 
-# Initialize the geolocator
-geolocator = Nominatim(user_agent="company_locator")
 
 def get_location_geopy(company_name):
     try:
@@ -65,14 +64,13 @@ def get_location_geopy(company_name):
     except Exception as e:
         return "Error", None, None
 
-# Read the from a dictionary object file
+
+# Read the data from a dictionary object file
 data = {"company": ["Lindhorst Gruppe", "Arvato", "Emsys", "Siemens", "EWE Netz"]}
 df = pd.DataFrame.from_dict(data)
 
 # Create new columns for address and coordinates
 df[['Address', 'Latitude', 'Longitude']] = df['company'].apply(lambda x: pd.Series(get_location_geopy(x)))
 
-
 # Save the results to a new CSV file
 print("Process completed ", df)
-
