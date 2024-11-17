@@ -7,6 +7,7 @@ On which data from the Open Govt Data portal should be worked on?
   - for the first analysis data from the follwing link be used
   "https://www.data.gov.in/resource/state-wise-jobseeker-registration-ncs-portal-till-30-june-2022"
 """
+import pandas as pd
 
 from config import API_INFO
 import requests
@@ -33,6 +34,12 @@ if response.status_code == 200:
     # Parse the JSON response
     data = response.json()
     # Print the retrieved data
-    print(data)
+    print(type(data))
 else:
     print(f"Failed to retrieve data: {response.status_code}")
+
+
+print(data.keys())
+print(len(data))
+
+
