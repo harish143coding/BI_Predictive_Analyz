@@ -8,7 +8,7 @@ On which data from the Open Govt Data portal should be worked on?
   "https://www.data.gov.in/resource/state-wise-jobseeker-registration-ncs-portal-till-30-june-2022"
 """
 import pandas as pd
-
+from pprint import pprint
 from config import API_INFO
 import requests
 
@@ -40,6 +40,9 @@ else:
 
 
 print(data.keys())
-print(len(data))
+#print(data['records'])
+#pprint(data['records'])
+df = pd.DataFrame(data['records'])
+print(df.head())
 
 
