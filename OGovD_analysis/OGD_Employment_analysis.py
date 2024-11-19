@@ -4,13 +4,16 @@ On which data from the Open Govt Data portal should be worked on?
 1. https://data.gov.in/
 2. There datasets classified under 36 public departments
 3. for the first choosing the department of Labour and employment.
-  - for the first analysis data from the follwing link be used
+  - for the first analysis data from the following link be used
   "https://www.data.gov.in/resource/state-wise-jobseeker-registration-ncs-portal-till-30-june-2022"
+4. Visualization: The idea is to present the results on Indian map.
 """
-import pandas as pd
 from pprint import pprint
 from config import API_INFO
+from Geo_coordinates_India import geo_coordinates
 import requests
+import pandas as pd
+import folium
 
 # Define the API endpoint and your API key
 api_url = "https://api.data.gov.in/resource/a79d3456-edcc-4c52-9be8-7682476cb64a?"
@@ -18,7 +21,8 @@ api_key = API_INFO["Employment_api_key"]
 format_type = "json"
 
 params = { "api-key": api_key,
-           "format": "json" }
+           "format": "json",
+           "limit": 1000}
 
 # Set the headers including the API key
 headers = {
@@ -40,9 +44,28 @@ else:
 
 
 print(data.keys())
-#print(data['records'])
-#pprint(data['records'])
+#pprint(data)
 df = pd.DataFrame(data['records'])
-print(df.head())
+
+
+# Add geo-coordinates to the DataFrame
+df['Latitude'] = df['states'].map(lambda x: geo_coordinates[x][0])
+df['Longitude'] = df['states'].map(lambda x: geo_coordinates[x][1])
+
+# Create a base map
+india_map = folium.Map(location=[20.5937, 78.9629], zoom_start=4)
+
+# Add markers to the map
+for idx, row in df.iterrows():
+    folium.Marker(
+        location=[row['Latitude'], row['Longitude']],
+        popup=f"{row['states']}: {row['female']}"
+    ).add_to(india_map)
+
+# Save the map to an HTML file
+india_map.save('india_map_with_coordinates.html')
+
+india_map
+
 
 
