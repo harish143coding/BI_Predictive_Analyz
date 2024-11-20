@@ -52,8 +52,28 @@ df = pd.DataFrame(data['records'])
 df['Latitude'] = df['states'].map(lambda x: geo_coordinates[x][0])
 df['Longitude'] = df['states'].map(lambda x: geo_coordinates[x][1])
 
+
+# Download GeoJSON for Indian states
+url = 'https://raw.githubusercontent.com/Subhash9325/GeoJson-Data-of-Indian-States/master/Indian_States.geojson'
+response = requests.get(url)
+india_geojson = response.json()
+
 # Create a base map
-india_map = folium.Map(location=[20.5937, 78.9629], zoom_start=4)
+india_map = folium.Map(location=[20.5937, 78.9629], zoom_start=5)
+
+
+# Add GeoJSON to the map
+folium.Choropleth(
+    geo_data=india_geojson,
+    name='choropleth',
+    data=df,
+    columns=['State', 'StatisticalNumber'],
+    key_on='feature.properties.ST_NM',
+    fill_color='YlOrRd',
+    fill_opacity=0.7,
+    line_opacity=0.2,
+    legend_name='Statistical Data' ).add_to(india_map)
+
 
 # Add markers to the map
 for idx, row in df.iterrows():
@@ -61,6 +81,7 @@ for idx, row in df.iterrows():
         location=[row['Latitude'], row['Longitude']],
         popup=f"{row['states']}: {row['female']}"
     ).add_to(india_map)
+
 
 # Save the map to an HTML file
 india_map.save('india_map_with_coordinates.html')
