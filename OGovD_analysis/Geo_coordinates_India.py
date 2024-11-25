@@ -40,4 +40,3 @@ geo_coordinates = {
     'West Bengal': (22.572656, 88.363892),
     'Grand Total': (27.891535,78.078743)
 }
-

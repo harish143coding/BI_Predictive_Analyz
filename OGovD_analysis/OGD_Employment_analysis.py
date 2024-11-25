@@ -53,26 +53,8 @@ df['Latitude'] = df['states'].map(lambda x: geo_coordinates[x][0])
 df['Longitude'] = df['states'].map(lambda x: geo_coordinates[x][1])
 
 
-# Download GeoJSON for Indian states
-url = 'https://raw.githubusercontent.com/Subhash9325/GeoJson-Data-of-Indian-States/master/Indian_States.geojson'
-response = requests.get(url)
-india_geojson = response.json()
-
 # Create a base map
-india_map = folium.Map(location=[20.5937, 78.9629], zoom_start=5)
-
-
-# Add GeoJSON to the map
-folium.Choropleth(
-    geo_data=india_geojson,
-    name='choropleth',
-    data=df,
-    columns=['State', 'StatisticalNumber'],
-    key_on='feature.properties.ST_NM',
-    fill_color='YlOrRd',
-    fill_opacity=0.7,
-    line_opacity=0.2,
-    legend_name='Statistical Data' ).add_to(india_map)
+india_map = folium.Map(location=[20.5937, 78.9629], tiles="Cartodb dark_matter", zoom_start=5)
 
 
 # Add markers to the map
