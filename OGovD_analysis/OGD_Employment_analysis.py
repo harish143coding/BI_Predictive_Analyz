@@ -65,10 +65,47 @@ for idx, row in df.iterrows():
     ).add_to(india_map)
 
 
+# Set the map bounds to focus on India
+bounds = [[6.5, 68.0], [35.5, 97.5]] # Approximate bounds for India
+india_map.fit_bounds(bounds)
+
 # Save the map to an HTML file
 india_map.save('india_map_with_coordinates.html')
 
 india_map
+
+
+"""
+next steps
+try with the GeoJSON data.
+
+
+
+import pandas as pd
+import folium
+
+# Assuming you have a DataFrame df and a geo_coordinates dictionary
+df['Latitude'] = df['states'].map(lambda x: geo_coordinates[x][0])
+df['Longitude'] = df['states'].map(lambda x: geo_coordinates[x][1])
+
+# Create a base map
+india_map = folium.Map(location=[20.5937, 78.9629], tiles="Cartodb dark_matter", zoom_start=5)
+
+# Add the GeoJSON layer for India
+india_geojson = 'path_to_your_india_geojson_file.geojson'
+folium.GeoJson(india_geojson).add_to(india_map)
+
+# Add markers to the map
+for idx, row in df.iterrows():
+    folium.Marker(
+        location=[row['Latitude'], row['Longitude']],
+        popup=f"{row['states']}: {row['female']}"
+    ).add_to(india_map)
+
+# Save the map to an HTML file
+india_map.save('india_map_with_coordinates.html')
+
+"""
 
 
 
