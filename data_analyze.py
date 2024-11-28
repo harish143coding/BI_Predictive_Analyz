@@ -83,3 +83,11 @@ print(df.head())
 print(df.info())
 #print(df['Location'].nunique())
 # implement the above function and check... shoud be worked on further.
+
+"""
+Next Steps:
+what should be done?
+analyze?
+display on frontend web framework.
+or full length Data engineering proj from GoVData
+"""
