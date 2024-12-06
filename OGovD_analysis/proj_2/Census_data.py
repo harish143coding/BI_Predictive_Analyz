@@ -13,24 +13,25 @@ census_url = "https://api.data.gov.in/resource/7360817d-7c02-4e0d-9143-976741df6
 params = {
     "api-key": API_INFO["api_key"],
     "format": "json",
-    "limit": 100000
+    "limit": 10000
 }
 
 response = requests.get(census_url, params=params)
 data = response.json()
-print(type(data))
+print(data["total"])
+#print(data["records"].columns())
 
 df = pd.DataFrame(data["records"])
 print(df.head())
-print(df['total_population_person'].unique())
 
-# In data understanding it is noticed that few of the metric coloumns are non-numeric so need perform data cleaning
+# In data understanding it is noticed that few of the metric columns are non-numeric so need perform data cleaning
 """ Data Cleaning: converting the non numeric columns to numeric and deleting the rows consisting all zero columns"""
 # Convert all columns to numeric where possible
 df = df.apply(pd.to_numeric, errors='coerce')
+# print(df.columns)
 
 # Drop rows where all metric values are zero (assuming 'state_uts_code' and 'district_code' are non-metric)
-metric_columns = ['total_population_person', 'area']
+metric_columns = ['total_population_person', "total_population_male", "total_population_female"]
 df = df[~(df[metric_columns].fillna(0).eq(0).all(axis=1))]
 
 
@@ -38,10 +39,10 @@ df = df[~(df[metric_columns].fillna(0).eq(0).all(axis=1))]
 def calculate_basic_stats(data: pd.DataFrame):
     total_population = df.groupby(["state_uts_code", "district_code"]).agg(
         {"total_population_person": "sum"})
-    avg_popuation = df.groupby(["state_uts_code", "district_code"])["total_population_person"].mean().reset_index()
-    return total_population, avg_popuation
+    avg_population = df.groupby(["state_uts_code", "district_code"])["total_population_person"].mean()
+    return total_population, avg_population
 
-calculate_basic_stats(df)
+print(calculate_basic_stats(df))
 
 
 """
