@@ -16,36 +16,53 @@ import pandas as pd
 weather_api_endpoint = "https://api.data.gov.in/resource/b3521980-43d8-4d22-b86e-43f9a927f4b9?"
 
 
+def get_all_records():
+    """
+    performing pagination to retrieve all the records from the API
+    """
+    params = {
+        "api-key": API_INFO["weather_api_key"],
+        "format": "json",
+        "limit": 10000  # Adjust this value based on the APIs maximum limit
+    }
+    offset = 0
+    all_records = []
 
-parameters = {
-                "api-key": API_INFO["weather_api_key"],
-                "format": "json",
-               "limit": 10000  # for scaling the database how to retrieve the further records
-}
+    while True:
+        params['offset'] = offset
+        response = requests.get(weather_api_endpoint, params=params)
+        data = response.json()
+        print(data.keys())
+        print(data["total"])
+        print(data["count"])
+        print(data["limit"])
+        #print(len(data["records"]))
 
-# Make the GET request to the API with parameters
-response = requests.get(weather_api_endpoint, params=parameters)
+        if not data:
+            break  # No more records to retrieve
 
-# Check if the request was successful
-if response.status_code == 200:
-    # Parse the JSON response
-    data = response.json()
-    # Print the retrieved data
-    print(type(response))
-else:
-    print(f"Failed to retrieve data: {response.status_code}")
+        all_records.extend(data)
+        offset += params['limit']
+
+    return all_records
 
 
-print(len(data['records']))
-df = pd.DataFrame(data['records'])
-print(df.head())
-print(df.info())
-print(df.groupby(["_state_"]).mean("avg_rainfall"))
+# Example usage
+all_records = get_all_records()
+
+print(type(all_records))
+# print(len(all_records['records']))
+# df = pd.DataFrame(all_records['records'])
+# print(df.head())
+# print(df.info())
+# print(df["avg_rainfall"].unique())
+
 
 
 
 """
 Next steps:
-test the API:
-go through the rainfall data from the dataframe it looks like the same avg rainfall in all the states
+FOKUS: here the idea is data engineering so data content is less bothered
+it is observed from the json keys 'total' records '21990'.
+then new function should be tested. 
 """
