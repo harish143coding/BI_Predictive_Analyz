@@ -33,16 +33,14 @@ def get_all_records():
         response = requests.get(weather_api_endpoint, params=params)
         data = response.json()
         print(data.keys())
-        print(data["total"])
-        print(data["count"])
-        print(data["limit"])
         #print(len(data["records"]))
+        print(data["message"])
 
-        if not data:
+        if 'records' not in data or not data['records']:
             break  # No more records to retrieve
 
-        all_records.extend(data)
-        offset += params['limit']
+        all_records.extend(data["records"])
+        offset += len(data['records'])
 
     return all_records
 
@@ -51,18 +49,13 @@ def get_all_records():
 all_records = get_all_records()
 
 print(type(all_records))
-# print(len(all_records['records']))
-# df = pd.DataFrame(all_records['records'])
-# print(df.head())
-# print(df.info())
-# print(df["avg_rainfall"].unique())
-
+print(len(all_records['records']))
 
 
 
 """
 Next steps:
 FOKUS: here the idea is data engineering so data content is less bothered
-it is observed from the json keys 'total' records '21990'.
-then new function should be tested. 
+only able to retrieve first 10,000 records (to test API_TESTER.py is used) problem with the API povider.
+next step storing the data according to dimensions after data understanding.
 """
