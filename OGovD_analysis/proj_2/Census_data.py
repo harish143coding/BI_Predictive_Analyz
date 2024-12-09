@@ -47,5 +47,5 @@ print(calculate_basic_stats(df))
 
 """
 next steps:
-During data understanding found some anamolies try correct them and finish the descriptive analysis
+finish the further descriptive analysis
 """
