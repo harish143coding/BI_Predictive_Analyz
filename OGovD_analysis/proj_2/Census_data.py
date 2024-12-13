@@ -5,10 +5,13 @@ Link: https://ap.data.gov.in/resource/villagetown-wise-primary-census-abstract-2
 
 """
 from config import API_INFO
+import geopandas as gpd
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import folium
+from folium.plugins import HeatMap
 
 
 
@@ -62,8 +65,9 @@ print(calculate_basic_stats(df))
 print(f" Distinct values in column {"mandal_code"} are {df["mandal_code"].unique()}")
 print(f" Distinct values in column {"town_village_code"} are {df["town_village_code"].unique()}")
 
+
 """ Visualizations """
-# creating a bar graphh
+#1 creating a bar graphh
 plt.figure(figsize=(10, 6))
 sns.barplot(x='mandal_code', y='total_population_person', data=df)
 plt.title('Total Population per Mandal')
@@ -71,31 +75,66 @@ plt.xlabel('Mandal Code')
 plt.ylabel('total_population_person')
 plt.show()
 
-# Visualization for avg population
-tota_popi, avg_popi = calculate_basic_stats(df)
+#2 Visualization for avg population
+tot_popi, avg_popi = calculate_basic_stats(df)
 plt.figure(figsize=(8, 8))
-plt.pie(avg_popi, labels=df['mandal_code'], autopct='%1.1f%%')
+plt.pie(avg_popi, labels=df['mandal_code'].unique(), autopct='%1.1f%%')
 plt.title('Distribution of Average Population per Mandal')
 plt.show()
 
 
-# Scatter plot
+#3 Scatter plot
 plt.figure(figsize=(10, 6))
-sns.scatterplot(x=[coord[1] for coord in df['geo_coordinates']], y=[coord[0] for coord in df['geo_coordinates']], size='total_population', hue='total_population', data=df, legend=False, sizes=(20, 200))
+sns.scatterplot(x=[coord[1] for coord in df["Geo Coordinates"]], y=[coord[0] for coord in df["Geo Coordinates"]], size='total_population_person', hue='total_population_person', data=df, legend=False, sizes=(20, 200))
 plt.title('Geo Coordinates vs Total Population')
 plt.xlabel('Longitude')
 plt.ylabel('Latitude')
 plt.show()
 
-# Heatmap
+#4 Heatmap
 plt.figure(figsize=(8, 6))
-sns.heatmap(df[['total_population', 'avg_population']].corr(), annot=True, cmap='coolwarm')
-plt.title('Correlation Between Metrics')
+sns.regplot(x='total_population_male', y='total_population_female', data=df)
+plt.title('Correlation between Total Male and Female Population')
 plt.show()
 
+#5 Geo Mapping
+df['latitude'] = df["Geo Coordinates"].apply(lambda x: x[0])
+df['longitude'] = df["Geo Coordinates"].apply(lambda x: x[1])
+
+# Load the shapefile (replace 'path_to_shapefile' with the actual path)
+
+shapefile_path = 'india_District_level_2.shp'
+mandal_gdf = gpd.read_file(shapefile_path)
+mandal_gdf['mandal_code'] = df['mandal_code']
+
+# Merge the shapefile GeoDataFrame with your data
+merged_gdf = mandal_gdf.merge(df, on='mandal_code')
+
+
+# Initialize the map centered around Visakhapatnam
+m = folium.Map(location=[17.6868, 83.2185], zoom_start=10)
+
+# Convert GeoDataFrame to GeoJSON for Folium
+geojson = merged_gdf.to_crs(epsg=4326).to_json()
+
+# Add GeoJSON layer to the map
+folium.GeoJson(geojson, name="Mandal Boundaries").add_to(m)
+
+# Prepare data for the HeatMap
+heat_data = [[row['latitude'], row['longitude'], row['total_population_male']] for index, row in df.iterrows()]
+
+# Add HeatMap layer to the map
+HeatMap(heat_data).add_to(m)
+
+# Add layer control to toggle between layers
+folium.LayerControl().add_to(m)
+
+# Save the map to an HTML file
+m.save('visakhapatnam_mandal_heatmap.html')
 
 
 """
 next steps:
-rest of the visualization should be tested and published
+
+All the visualizations are working except the Map with shape file on mandal coordinates
 """
