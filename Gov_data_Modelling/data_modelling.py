@@ -39,7 +39,6 @@ def get_all_records(api_url) -> pd.DataFrame:
 
 # Example usage
 df = get_all_records(weather_api_endpoint)
-print(df.head())
 
 
 """
@@ -69,16 +68,16 @@ fact_df = fact_df[[
     'location_id', 'time_id', 'avg_rainfall', 'agency_name'
 ]]
 
-from sqlalchemy import create_engine
 
 # Replace these variables with your database credentials
-db_type = 'mysql'  # or 'postgresql', 'sqlite', etc.
-db_user = 'your_username'
-db_password = 'your_password'
-db_host = 'localhost'
-db_name = 'your_db_name'
+db_type = 'postgresql'  # or 'postgresql', 'sqlite', etc.
+db_user = DB_CONFIG["username"]
+db_password = DB_CONFIG["password"]
+db_host = DB_CONFIG['host']
+db_port = DB_CONFIG["port"]
+db_name = DB_CONFIG["database"]
 
-engine = create_engine(f'{db_type}://{db_user}:{db_password}@{db_host}/{db_name}')
+engine = create_engine(f'{db_type}://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}')
 
 # Loading data into the database
 location_df.to_sql('location_dim', engine, if_exists='replace', index=False)
@@ -88,9 +87,8 @@ fact_df.to_sql('rainfall_fact', engine, if_exists='replace', index=False)
 
 
 
-
 """
 Next steps:
 FOKUS: here the idea is data engineering so data content is less bothered
-next step storing the data according to dimensions after data understanding.
+next step data loaded into the DB test it in postgres client afterthat new project.
 """
