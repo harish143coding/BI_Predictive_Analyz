@@ -69,7 +69,7 @@ fact_df = fact_df[[
 ]]
 
 
-# Replace these variables with your database credentials
+# DB Parameters
 db_type = 'postgresql'  # or 'postgresql', 'sqlite', etc.
 db_user = DB_CONFIG["username"]
 db_password = DB_CONFIG["password"]
