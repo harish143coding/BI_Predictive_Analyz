@@ -109,6 +109,7 @@ mandal_gdf['mandal_code'] = df['mandal_code']
 
 # Merge the shapefile GeoDataFrame with your data
 merged_gdf = mandal_gdf.merge(df, on='mandal_code')
+print(merged_gdf.head())
 
 
 # Initialize the map centered around Visakhapatnam
@@ -121,7 +122,7 @@ geojson = merged_gdf.to_crs(epsg=4326).to_json()
 folium.GeoJson(geojson, name="Mandal Boundaries").add_to(m)
 
 # Prepare data for the HeatMap
-heat_data = [[row['latitude'], row['longitude'], row['total_population_male']] for index, row in df.iterrows()]
+heat_data = [[row['latitude'], row['longitude'], row['total_population_male']] for index, row in merged_gdf.iterrows()]
 
 # Add HeatMap layer to the map
 HeatMap(heat_data).add_to(m)
@@ -135,6 +136,5 @@ m.save('visakhapatnam_mandal_heatmap.html')
 
 """
 next steps:
-
-All the visualizations are working except the Map with shape file on mandal coordinates
+geo-visualization is not competely carried, will be focussed for the next project.   
 """
