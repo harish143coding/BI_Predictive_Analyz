@@ -24,9 +24,18 @@ metadata = MetaData()
 table_name = 'location_dim'  # Replace with your table name
 table = Table(table_name, metadata, autoload_with=engine)
 
+# Fetch and print results
+def get_query(query):
+    """
+    input a query to the fn it queries the DB and gives the output
+    """
+    result = session.execute(query)
+    for row in result:
+        print(row)
 
-# Create a SELECT query for specific columns
-sql_query = text("""
+# Testing the function with sample queries
+#query 1
+sql_query_1 = text("""
 SELECT rf.location_id, _state_ AS Indian_state, district,  avg_rainfall
 FROM rainfall_fact rf
 JOIN location_dim ld
@@ -36,11 +45,12 @@ _state_ LIKE 'Andhra%'
 LIMIT 10  
 """)
 
+sql_query_2 = text("""
+SELECT time_id, MAX(year), MAX(month)
+FROM time_dim td
+GROUP BY time_id
+ORDER BY time_id
+""")
 
-# Execute the query
-result = session.execute(sql_query)
-print(type(result))
-
-# Fetch and print results
-for row in result:
-    print(row)
+#TESTING
+get_query(sql_query_2)
