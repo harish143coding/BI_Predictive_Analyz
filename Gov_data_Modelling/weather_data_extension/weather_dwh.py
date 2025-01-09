@@ -7,6 +7,11 @@ Brainstorming
    data for all the states approx until 2023. (site: https://www.data.gov.in/apis/a6007b2f-eed3-4a68-a321-d2d563d52bb2)
 2. how can I get statewise temperature historical data, so that fact data contains values of monthly temperature state-wise?
 
+PROMPT: I have a dataframe consisting mean temperatures of India over a time period from 1901 to 2021. now can you
+        calcuate the mean temperature state-wise for all the 29 Indian
+       states using any suitable algorithm based on the geographical location the states such that considering states
+       in the north are with bit lower temperatures compared to the southern states.
+
 """
 import pandas as pd
 
@@ -15,39 +20,47 @@ weather_df = pd.read_csv("TEMP_ANNUAL_MEAN_1901-2021.csv")
 print(weather_df.head())
 
 import pandas as pd
+import geopandas as gpd
+from shapely.geometry import Point
 
-# Given dataframe with country's mean temperature
-data = {
-    'YEAR': [1901, 1902, 1903, 1904],
-    'JAN': [19.32, 20.17, 19.28, 19.19],
-    'FEB': [20.89, 21.58, 20.71, 20.32],
-    # Add all other months
-}
-df = pd.DataFrame(data)
+# Load temperature data (assumed to have 'latitude', 'longitude', 'temperature')
+data = pd.read_csv("temperature_data.csv")  # Replace with actual file path
+gdf = gpd.GeoDataFrame(data, geometry=gpd.points_from_xy(data.longitude, data.latitude))
 
-# List of Indian states
-states = ['State1', 'State2', 'State3']  # Replace with actual state names
+# Load shapefile for Indian states (replace 'states_shapefile.shp' with actual path)
+states_gdf = gpd.read_file("states_shapefile.shp")
 
-# Replicate the country's mean temperature data for each state
-statewise_data = []
-for state in states:
-    state_df = df.copy()
-    state_df['STATE'] = state
-    statewise_data.append(state_df)
+# Spatial join to assign each temperature point to a state
+gdf = gpd.sjoin(gdf, states_gdf, how="left", op="within")
 
-# Concatenate all statewise data into a single dataframe
-df_states = pd.concat(statewise_data)
+# Add latitude-based adjustment factor (normalize latitude for adjustment)
+def calculate_adjustment(lat):
+    """Lower latitudes (southern states) get a higher adjustment."""
+    max_lat, min_lat = 37.6, 8.4  # Approx latitude range for India
+    return 1 + (lat - min_lat) / (max_lat - min_lat) * 0.2  # Example scaling
 
-# Calculate the state-wise mean temperatures
-statewise_mean_temperatures = df_states.groupby('STATE').mean()
+gdf["adjustment_factor"] = gdf["latitude"].apply(calculate_adjustment)
+gdf["adjusted_temperature"] = gdf["temperature"] * gdf["adjustment_factor"]
 
-# Print the result
-print(statewise_mean_temperatures)
+# Group by state and calculate mean temperature
+state_mean_temp = gdf.groupby("state_name").agg({
+    "adjusted_temperature": "mean"
+}).reset_index()
+
+state_mean_temp.rename(columns={"adjusted_temperature": "mean_temperature"}, inplace=True)
+
+# Save results
+state_mean_temp.to_csv("state_mean_temperatures.csv", index=False)
+print(state_mean_temp)
+
+
+
+
 
 """
 next steps:
 reusing the configs for API and DB how?
 find the resource for temperatures monthly state wise
 
-using the mean temperature data of india states temperature shoould be caculated. 
+using the mean temperature data of india states temperature should be calculated. 
 """
