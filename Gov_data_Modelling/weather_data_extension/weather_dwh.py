@@ -14,21 +14,15 @@ PROMPT: I have a dataframe consisting mean temperatures of India over a time per
 
 """
 import pandas as pd
-
-weather_df = pd.read_csv("TEMP_ANNUAL_MEAN_1901-2021.csv")
-
-print(weather_df.head())
-
-import pandas as pd
 import geopandas as gpd
 from shapely.geometry import Point
 
 # Load temperature data (assumed to have 'latitude', 'longitude', 'temperature')
-data = pd.read_csv("temperature_data.csv")  # Replace with actual file path
+data = pd.read_csv("TEMP_ANNUAL_MEAN_1901-2021.csv")  # Replace with actual file path
 gdf = gpd.GeoDataFrame(data, geometry=gpd.points_from_xy(data.longitude, data.latitude))
 
 # Load shapefile for Indian states (replace 'states_shapefile.shp' with actual path)
-states_gdf = gpd.read_file("states_shapefile.shp")
+states_gdf = gpd.read_file("Indian_States.shp")
 
 # Spatial join to assign each temperature point to a state
 gdf = gpd.sjoin(gdf, states_gdf, how="left", op="within")
@@ -60,7 +54,6 @@ print(state_mean_temp)
 """
 next steps:
 reusing the configs for API and DB how?
-find the resource for temperatures monthly state wise
 
-using the mean temperature data of india states temperature should be calculated. 
+supply the dataframe from the csv to the prompt to recorrect the code. 
 """
