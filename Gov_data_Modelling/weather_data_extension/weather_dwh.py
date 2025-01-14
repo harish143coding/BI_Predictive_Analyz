@@ -13,40 +13,37 @@ PROMPT: I have a dataframe consisting mean temperatures of India over a time per
        in the north are with bit lower temperatures compared to the southern states.
 
 """
+from shapely.geometry import Point
+from state_weights import state_weights
 import pandas as pd
 import geopandas as gpd
-from shapely.geometry import Point
+
 
 # Load temperature data (assumed to have 'latitude', 'longitude', 'temperature')
-data = pd.read_csv("TEMP_ANNUAL_MEAN_1901-2021.csv")  # Replace with actual file path
-gdf = gpd.GeoDataFrame(data, geometry=gpd.points_from_xy(data.longitude, data.latitude))
+df = pd.read_csv("TEMP_ANNUAL_MEAN_1901-2021.csv")  # Replace with actual file path
+df.drop(columns=["JAN-FEB", "MAR-MAY", "JUN-SEP", "OCT-DEC"], inplace=True)
+print(df.head())
 
-# Load shapefile for Indian states (replace 'states_shapefile.shp' with actual path)
-states_gdf = gpd.read_file("Indian_States.shp")
 
-# Spatial join to assign each temperature point to a state
-gdf = gpd.sjoin(gdf, states_gdf, how="left", op="within")
+# Create a DataFrame with states and their weights
+state_df = pd.DataFrame(list(state_weights.items()), columns=["state_name", "weight"])
 
-# Add latitude-based adjustment factor (normalize latitude for adjustment)
-def calculate_adjustment(lat):
-    """Lower latitudes (southern states) get a higher adjustment."""
-    max_lat, min_lat = 37.6, 8.4  # Approx latitude range for India
-    return 1 + (lat - min_lat) / (max_lat - min_lat) * 0.2  # Example scaling
+# Calculate the adjusted annual temperature for each state
+state_mean_temp = []
+for state, weight in state_weights.items():
+    # Adjust the ANNUAL temperature based on the weight
+    adjusted_temps = df["ANNUAL"] * weight
+    mean_temp = adjusted_temps.mean()
+    state_mean_temp.append({"state_name": state, "mean_temperature": mean_temp})
 
-gdf["adjustment_factor"] = gdf["latitude"].apply(calculate_adjustment)
-gdf["adjusted_temperature"] = gdf["temperature"] * gdf["adjustment_factor"]
+# Create a DataFrame for state-wise mean temperatures
+state_mean_temp_df = pd.DataFrame(state_mean_temp)
 
-# Group by state and calculate mean temperature
-state_mean_temp = gdf.groupby("state_name").agg({
-    "adjusted_temperature": "mean"
-}).reset_index()
+# Save results to a CSV
+state_mean_temp_df.to_csv("state_mean_temperatures.csv", index=False)
 
-state_mean_temp.rename(columns={"adjusted_temperature": "mean_temperature"}, inplace=True)
-
-# Save results
-state_mean_temp.to_csv("state_mean_temperatures.csv", index=False)
-print(state_mean_temp)
-
+# Output results
+print(state_mean_temp_df)
 
 
 
@@ -55,5 +52,5 @@ print(state_mean_temp)
 next steps:
 reusing the configs for API and DB how?
 
-supply the dataframe from the csv to the prompt to recorrect the code. 
+re-evaluated the code in ChatGPT now should work on the new one.
 """
