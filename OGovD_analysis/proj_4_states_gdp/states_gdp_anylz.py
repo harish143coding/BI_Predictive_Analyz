@@ -4,6 +4,9 @@ Dataset (Gross State Domestic Product): https://www.data.gov.in/resource/gross-s
 """
 from OGovD_analysis.config import API_INFO
 import requests
+import pandas as pd
+import geopandas as gpd
+import matplotlib.pyplot as plt
 
 
 gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda0?"
@@ -16,7 +19,39 @@ params = {
 
 response = requests.get(gsdp_url, params=params)
 data = response.json()
-print(data["total"])
+print(type(data["records"][0]))
+
+
+# Load shapefile for Indian states
+india_states = gpd.read_file('OGovD_analysis/proj_3_national_population/India Shape/india_st.shp')
+print(india_states["STATE"])
+
+# Load GDP data
+gdp_data = pd.DataFrame(data["records"])
+# Mapping the state names according to GeoDataFrame from the States shape file.
+state_name_mapping = {
+    "Odisha": "Orissa",
+    "Chhattisgarh": "CHANDIGARH",
+    # Add other mappings
+}
+
+gdp_data['state_uts'] = gdp_data['state_uts'].replace(state_name_mapping)
+gdp_data['state_uts'] = gdp_data['state_uts'].str.upper()
+
+
+
+unmatched_states = set(gdp_data['state_uts']) - set(india_states['STATE'])
+print("Unmatched states:", unmatched_states)
+
+
+# Merge GDP data with shapefile
+merged = india_states.merge(gdp_data, left_on='STATE', right_on='state_uts')
+
+# Plot choropleth map
+merged.plot(column='gsdp_curr_2021_22_cr_', cmap='OrRd', legend=True)
+plt.title("Indian States GDP for 2021-22")
+plt.show()
+
 
 
 
@@ -24,5 +59,5 @@ print(data["total"])
 
 """
 Next steps:
-work on the import error from Chat* soutions
+geovisualization should be adusted by correcting the state names
 """
