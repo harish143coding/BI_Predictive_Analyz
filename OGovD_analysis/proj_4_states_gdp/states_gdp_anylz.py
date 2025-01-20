@@ -19,7 +19,6 @@ params = {
 
 response = requests.get(gsdp_url, params=params)
 data = response.json()
-print(type(data["records"][0]))
 
 
 # Load shapefile for Indian states
@@ -28,16 +27,19 @@ print(india_states["STATE"])
 
 # Load GDP data
 gdp_data = pd.DataFrame(data["records"])
+print(gdp_data.columns)
 # Mapping the state names according to GeoDataFrame from the States shape file.
 state_name_mapping = {
     "Odisha": "Orissa",
     "Chhattisgarh": "CHANDIGARH",
+    "Jammu & Kashmir*": "JAMMU AND KASHMIR",
+    "Andaman & Nicobar Islands": "ANDAMAN AND NICOBAR ISLANDS",
+    "Puducherry": "PONDICHERRY"
     # Add other mappings
 }
 
 gdp_data['state_uts'] = gdp_data['state_uts'].replace(state_name_mapping)
 gdp_data['state_uts'] = gdp_data['state_uts'].str.upper()
-
 
 
 unmatched_states = set(gdp_data['state_uts']) - set(india_states['STATE'])
@@ -48,16 +50,14 @@ print("Unmatched states:", unmatched_states)
 merged = india_states.merge(gdp_data, left_on='STATE', right_on='state_uts')
 
 # Plot choropleth map
-merged.plot(column='gsdp_curr_2021_22_cr_', cmap='OrRd', legend=True)
-plt.title("Indian States GDP for 2021-22")
-plt.show()
-
-
-
-
+merged.plot(column='_growth2014_15', cmap='RdGy', legend=True)
+plt.title("Indian States GDP for 2014-15")
+plt.savefig(fname="GSDP_growth_14_15.jpg")
+plt.show() # it clears the figure after creation therefore savefig should be used before show.
 
 
 """
-Next steps:
-geovisualization should be adusted by correcting the state names
+Next Project:
+Geovisualization is done!
+in the next analysis india states shape file should be adjusted according to new states
 """
