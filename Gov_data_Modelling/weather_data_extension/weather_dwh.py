@@ -28,6 +28,7 @@ print(df.head())
 # Create a DataFrame with states and their weights
 state_df = pd.DataFrame(list(state_weights.items()), columns=["state_name", "weight"])
 
+df["ANNUAL"] = pd.to_numeric(df["ANNUAL"], errors="coerce").fillna(0)
 # Calculate the adjusted annual temperature for each state
 state_mean_temp = []
 for state, weight in state_weights.items():
