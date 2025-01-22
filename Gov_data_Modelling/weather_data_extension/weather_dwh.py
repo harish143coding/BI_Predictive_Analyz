@@ -22,36 +22,48 @@ import geopandas as gpd
 # Load temperature data (assumed to have 'latitude', 'longitude', 'temperature')
 df = pd.read_csv("TEMP_ANNUAL_MEAN_1901-2021.csv")  # Replace with actual file path
 df.drop(columns=["JAN-FEB", "MAR-MAY", "JUN-SEP", "OCT-DEC"], inplace=True)
-print(df.head())
 
 
-# Create a DataFrame with states and their weights
-state_df = pd.DataFrame(list(state_weights.items()), columns=["state_name", "weight"])
-
-df["ANNUAL"] = pd.to_numeric(df["ANNUAL"], errors="coerce").fillna(0)
-# Calculate the adjusted annual temperature for each state
 state_mean_temp = []
-for state, weight in state_weights.items():
-    # Adjust the ANNUAL temperature based on the weight
-    adjusted_temps = df["ANNUAL"] * weight
-    mean_temp = adjusted_temps.mean()
-    state_mean_temp.append({"state_name": state, "mean_temperature": mean_temp})
 
-# Create a DataFrame for state-wise mean temperatures
+# List of month columns
+months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
+
+# Ensure monthly and annual columns are numeric
+for month in months:
+    df[month] = pd.to_numeric(df[month], errors="coerce").fillna(0)
+df["ANNUAL"] = pd.to_numeric(df["ANNUAL"], errors="coerce").fillna(0)
+
+# Ensure weights are numeric
+state_weights_1 = {state: float(weight) for state, weight in state_weights.items()}
+
+# Loop through states to calculate adjusted mean temperatures
+for state, weight in state_weights_1.items():
+    for year in df["YEAR"].unique():
+        state_data = {"state_name": state, "year": year}
+
+        # Filter data for the current year
+        year_data = df[df["YEAR"] == year]
+
+        # Calculate adjusted mean temperature for each month
+        for month in months:
+            adjusted_temps = year_data[month] * weight  # Adjust using weight
+            mean_temp = adjusted_temps.mean()  # Compute the mean
+            state_data[f"mean_temperature_{month}"] = mean_temp  # Add monthly mean
+
+        # Calculate adjusted annual mean temperature
+        adjusted_annual = year_data["ANNUAL"] * weight
+        state_data["mean_temperature_annual"] = adjusted_annual.mean()
+
+        # Append state data to results
+        state_mean_temp.append(state_data)
+
+
 state_mean_temp_df = pd.DataFrame(state_mean_temp)
-
-# Save results to a CSV
-state_mean_temp_df.to_csv("state_mean_temperatures.csv", index=False)
-
-# Output results
-print(state_mean_temp_df)
-
-
-
+print(state_mean_temp_df.describe())
 
 """
 next steps:
-reusing the configs for API and DB how?
-
-re-evaluated the code in ChatGPT now should work on the new one.
+new dataframe is created with year,state, monthwise mean temperature.
+Next: what facts are further needed for the Mausam DWH?
 """
