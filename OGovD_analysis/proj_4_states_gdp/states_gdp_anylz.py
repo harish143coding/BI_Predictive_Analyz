@@ -1,6 +1,11 @@
 """
 the idea is to carry-out appropriate visualization preferably Geo-Visualization if no the other
 Dataset (Gross State Domestic Product): https://www.data.gov.in/resource/gross-state-domestic-product-gsdp-current-prices-states-and-uts-2011-12-2021-22
+
+Brainstorming:
+1. The idea is to carry out 2-3 appropriate visualizations with this data.(1 is already created)
+2. shape file should e fited according to the new satets
+
 """
 from OGovD_analysis.config import API_INFO
 import requests
@@ -27,7 +32,7 @@ print(india_states["STATE"])
 
 # Load GDP data
 gdp_data = pd.DataFrame(data["records"])
-print(gdp_data.columns)
+print(gdp_data.head())
 # Mapping the state names according to GeoDataFrame from the States shape file.
 state_name_mapping = {
     "Odisha": "Orissa",
@@ -60,4 +65,5 @@ plt.show() # it clears the figure after creation therefore savefig should be use
 Next Project:
 Geovisualization is done!
 in the next analysis india states shape file should be adjusted according to new states
+cntnd.. from the chatgpt answers, pick an apprpriate visualization and o further.. 
 """
