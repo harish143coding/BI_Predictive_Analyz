@@ -77,7 +77,24 @@ data_with_coords = {
     "longitude": [79.7400, 94.7278, 92.9376, 85.3131, 81.8661],
 }
 
+gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda0?"
+params = {
+        "api-key": API_INFO["api_key"],
+        "format": "json",
+        "limit": 10000
+    }
+
+
+response = requests.get(gsdp_url, params)
+data = response.json()
 # Create a DataFrame
+sample_df = pd.DataFrame(data["records"])
+print(len(data["records"]))
+geo_sample_df = pd.DataFrame.from_dict(geo_coordinates,
+                                       orient='index',
+                                       columns=["latitude", "longitude"]).reset_index()
+geo_sample_df.rename(columns={'index': 'States'}, inplace=True)
+print(geo_sample_df.head())
 geo_df = pd.DataFrame(data_with_coords)
 
 # Create a Folium map
@@ -100,7 +117,7 @@ for _, row in geo_df.iterrows():
     ).add_to(interactive_map)
 
 # Save and display the map
-interactive_map.save("./interactive_map.html")
+#interactive_map.save("./interactive_map.html")
 
 
 
@@ -111,5 +128,5 @@ interactive_map.save("./interactive_map.html")
 Next Project:
 Geovisualization is done!
 in the next analysis india states shape file should be adjusted according to new states
-cntnd.. Interactive map visuaization should be fitted to our data and inside a function.
+cntnd.. Data preparation is being done to get the interactive visualization for our data.
 """
