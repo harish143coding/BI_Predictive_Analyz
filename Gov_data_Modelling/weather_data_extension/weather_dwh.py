@@ -84,15 +84,34 @@ def process_mean_rainfal_data(API_endpoint):
         "scroll": "1m",
         "limit": 10000  # Ensure this matches the API's maximum limit
     }
-    response = requests.get(API_endpoint, params=params)
-    data = response.json()
-    df = pd.DataFrame(data["records"])
-    return df
+    all_data = []
+    offset = 0
+
+    while True:
+        params["offset"] = offset  # Add offset for pagination
+        response = requests.get(API_endpoint, params=params)
+
+        if response.status_code != 200:
+            print(f"Error: {response.status_code}, {response.text}")
+            break  # Stop if there’s an error
+
+        data = response.json()
+        if not data or len(data) < 10000:
+            all_data.extend(data)
+            break  # Stop if fewer than 10,000 records are returned (end of data)
+
+        all_data.extend(data)
+        offset += 10000  # Move to the next batch
+
+
+
+    #df = pd.DataFrame(all_data["records"])
+    return print(f"Total records fetched: {len(all_data)}")
 
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-print(process_mean_rainfal_data(rainfall_api_endpoint).info())
+print(process_mean_rainfal_data(rainfall_api_endpoint))
 
 """
 next steps:
