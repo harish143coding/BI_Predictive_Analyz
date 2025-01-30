@@ -96,11 +96,14 @@ def process_mean_rainfal_data(API_endpoint):
             break  # Stop if there’s an error
 
         data = response.json()
-        if not data or len(data) < 10000:
-            all_data.extend(data)
-            break  # Stop if fewer than 10,000 records are returned (end of data)
+        if "records" not in data or not data["records"]:  # Ensure 'records' exists
+            break  # Stop if no more records are available
 
-        all_data.extend(data)
+        all_data.extend(data["records"])  # Append only the records list
+
+        if len(data["records"]) < 10000:  # Stop when fewer than 10,000 records are returned
+            break
+        print(data["total"])
         offset += 10000  # Move to the next batch
 
 
@@ -116,5 +119,5 @@ print(process_mean_rainfal_data(rainfall_api_endpoint))
 """
 next steps:
 first function for Temperature facts dataframe is created with year,state, monthwise mean temperature.
-Nextstep: the next function rainfall data, old problem getting only 10000 records how to overcomes
+Nextstep: execute the code and ask this error in ChatGPT difference between the total and records
 """
