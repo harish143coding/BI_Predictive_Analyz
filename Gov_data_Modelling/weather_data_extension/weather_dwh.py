@@ -85,39 +85,55 @@ def process_mean_rainfal_data(API_endpoint):
         "limit": 10000  # Ensure this matches the API's maximum limit
     }
     all_data = []
-    offset = 0
+    start_year = 2011  # Adjust based on API data range
+    end_year = 2021  # Set to the latest year available
 
-    while True:
-        params["offset"] = offset  # Add offset for pagination
-        response = requests.get(API_endpoint, params=params)
+    states = ['Himachal Pradesh' 'Jammu & Kashmir' 'Kerala' 'Karnataka' 'Jharkhand'
+ 'Ladakh' 'Lakshadweep' 'Madhya Pradesh' 'Maharashtra' 'Mizoram'
+ 'Nagaland' 'Meghalaya' 'Odisha' 'Manipur' 'Puducherry' 'Punjab' 'Sikkim'
+ 'Tamil Nadu' 'Rajasthan' 'Tripura' 'Uttar Pradesh' 'Telangana'
+ 'Uttarakhand' 'NA' 'West Bengal' 'Arunachal Pradesh' 'Assam' 'Bihar'
+ 'Andhra Pradesh' 'Andaman & Nicobar' 'Delhi' 'Goa' 'Gujarat' 'Chandigarh'
+ 'Chhattisgarh' 'Dadra & Nagar Haveli' 'Daman & Diu' 'Haryana']  # Add all states
+    for state in states:
+        for year in range(start_year, end_year + 1):
+            for month in range(1, 13):
+                offset = 0
+                while True:
+                    params["_state_"] = state  # Filter by state
+                    params["year"] = year
+                    params["month_"] = month
+                    params["offset"] = offset
 
-        if response.status_code != 200:
-            print(f"Error: {response.status_code}, {response.text}")
-            break  # Stop if there’s an error
+                    response = requests.get(API_endpoint, params=params)
 
-        data = response.json()
-        if "records" not in data or not data["records"]:  # Ensure 'records' exists
-            break  # Stop if no more records are available
+                    if response.status_code != 200:
+                        print(f"Error: {response.status_code}, {response.text}")
+                        break
 
-        all_data.extend(data["records"])  # Append only the records list
+                    data = response.json()
+                    if "records" not in data or not data["records"]:
+                        break
 
-        if len(data["records"]) < 10000:  # Stop when fewer than 10,000 records are returned
-            break
-        print(data["total"])
-        offset += 10000  # Move to the next batch
+                    all_data.extend(data["records"])
+                    print(f"Fetched {len(all_data)} records for {state}, {year}-{month:02d}...")
 
+                    if len(data["records"]) < 10000:
+                        break
 
+                    offset += 10000
 
-    #df = pd.DataFrame(all_data["records"])
-    return print(f"Total records fetched: {len(all_data)}")
+    df = pd.DataFrame(all_data)
+    return print(f"Total records fetched: {len(all_data)}"), df
 
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-print(process_mean_rainfal_data(rainfall_api_endpoint))
+x, y = process_mean_rainfal_data(rainfall_api_endpoint)
 
+print(len(y), y["_state_"].unique())
 """
 next steps:
 first function for Temperature facts dataframe is created with year,state, monthwise mean temperature.
-Nextstep: execute the code and ask this error in ChatGPT difference between the total and records
+Nextstep: succedded in fetching data batchwise usin state and year filters but should be validated!!
 """
