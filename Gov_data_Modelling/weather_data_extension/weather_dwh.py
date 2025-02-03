@@ -86,7 +86,7 @@ def process_mean_rainfal_data(API_endpoint):
     }
     all_data = []
     start_year = 2011  # Adjust based on API data range
-    end_year = 2021  # Set to the latest year available
+    end_year = 2012  # Set to the latest year available
 
     states = ['Himachal Pradesh' 'Jammu & Kashmir' 'Kerala' 'Karnataka' 'Jharkhand'
  'Ladakh' 'Lakshadweep' 'Madhya Pradesh' 'Maharashtra' 'Mizoram'
@@ -135,5 +135,5 @@ print(len(y), y["_state_"].unique())
 """
 next steps:
 first function for Temperature facts dataframe is created with year,state, monthwise mean temperature.
-Nextstep: succedded in fetching data batchwise usin state and year filters but should be validated!!
+Nextstep: succedded in fetching data batchwise using state and year filters but should be validated!!
 """
