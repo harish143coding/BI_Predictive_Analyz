@@ -18,6 +18,7 @@ from Gov_data_Modelling.config import API_INFO
 import requests
 import pandas as pd
 import geopandas as gpd
+import urllib.parse
 
 
 def get_temperature_data(source_file):
@@ -72,7 +73,12 @@ temperature_data_source = "TEMP_ANNUAL_MEAN_1901-2021.csv"
 
 # testing the first fn in Bharat Mausam Dwh
 # print(get_temperature_data(temperature_data_source).head())
+states = "['Himachal Pradesh' 'Jammu & Kashmir' 'Kerala' 'Karnataka' 'Jharkhand' 'Ladakh' 'Lakshadweep' 'Madhya Pradesh' 'Maharashtra' 'Mizoram' 'Nagaland' 'Meghalaya' 'Odisha' 'Manipur' 'Puducherry' 'Punjab' 'Sikkim' 'Tamil Nadu' 'Rajasthan' 'Tripura' 'Uttar Pradesh' 'Telangana' 'Uttarakhand' 'NA' 'West Bengal' 'Arunachal Pradesh' 'Assam' 'Bihar' 'Andhra Pradesh' 'Andaman & Nicobar' 'Delhi' 'Goa' 'Gujarat' 'Chandigarh' 'Chhattisgarh' 'Dadra & Nagar Haveli' 'Daman & Diu' 'Haryana']"
 
+a = states[1:-1].split("' '")
+
+# Cleaning up quotes and spaces
+states = [name.strip("' ") for name in a]
 def process_mean_rainfal_data(API_endpoint):
     """
     The purpose of this Func is to fetch the raw rainfall data from the API and obtain
@@ -86,42 +92,38 @@ def process_mean_rainfal_data(API_endpoint):
     }
     all_data = []
     start_year = 2011  # Adjust based on API data range
-    end_year = 2012  # Set to the latest year available
+    end_year = 2011  # Set to the latest year available
 
-    states = ['Himachal Pradesh' 'Jammu & Kashmir' 'Kerala' 'Karnataka' 'Jharkhand'
- 'Ladakh' 'Lakshadweep' 'Madhya Pradesh' 'Maharashtra' 'Mizoram'
- 'Nagaland' 'Meghalaya' 'Odisha' 'Manipur' 'Puducherry' 'Punjab' 'Sikkim'
- 'Tamil Nadu' 'Rajasthan' 'Tripura' 'Uttar Pradesh' 'Telangana'
- 'Uttarakhand' 'NA' 'West Bengal' 'Arunachal Pradesh' 'Assam' 'Bihar'
- 'Andhra Pradesh' 'Andaman & Nicobar' 'Delhi' 'Goa' 'Gujarat' 'Chandigarh'
- 'Chhattisgarh' 'Dadra & Nagar Haveli' 'Daman & Diu' 'Haryana']  # Add all states
     for state in states:
         for year in range(start_year, end_year + 1):
-            for month in range(1, 13):
-                offset = 0
-                while True:
-                    params["_state_"] = state  # Filter by state
-                    params["year"] = year
-                    params["month_"] = month
-                    params["offset"] = offset
+            offset = 0
+            while True:
+                params.update({
+                    "filters[year]": year,  # Correct API format
+                    "filters[_state_]": state,  # Correct API format
+                    "offset": offset
+                })
 
-                    response = requests.get(API_endpoint, params=params)
+                response = requests.get(API_endpoint, params=params)
 
-                    if response.status_code != 200:
-                        print(f"Error: {response.status_code}, {response.text}")
-                        break
+                if response.status_code != 200:
+                    print(f"Error: {response.status_code}, {response.text}")
+                    break
 
-                    data = response.json()
-                    if "records" not in data or not data["records"]:
-                        break
+                data = response.json()
 
-                    all_data.extend(data["records"])
-                    print(f"Fetched {len(all_data)} records for {state}, {year}-{month:02d}...")
+                if "records" not in data or not data["records"]:
+                    break  # Stop if no more records
 
-                    if len(data["records"]) < 10000:
-                        break
+                all_data.extend(data["records"])
 
-                    offset += 10000
+                print(f"Fetched {len(all_data)} records for {state}, {year}...")
+
+                if len(data["records"]) < 1000:  # If fewer than limit, stop
+                    break
+
+                offset += 1000  # Move to the next batch
+
 
     df = pd.DataFrame(all_data)
     return print(f"Total records fetched: {len(all_data)}"), df
@@ -132,8 +134,10 @@ rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321
 x, y = process_mean_rainfal_data(rainfall_api_endpoint)
 
 print(len(y), y["_state_"].unique())
+
+
 """
 next steps:
 first function for Temperature facts dataframe is created with year,state, monthwise mean temperature.
-Nextstep: succedded in fetching data batchwise using state and year filters but should be validated!!
+Nextstep: after filter and state connection data insereted properly, clean the code and fetch all the required years accordin to the DWH !!
 """
