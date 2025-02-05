@@ -29,3 +29,9 @@ state_weights = {
     "Tripura": 0.95,
     "Meghalaya": 0.9,
 }
+
+Indian_states = ("['Himachal Pradesh' 'Jammu & Kashmir' 'Kerala' 'Karnataka' 'Jharkhand' 'Ladakh' 'Lakshadweep' 'Madhya "
+          "Pradesh' 'Maharashtra' 'Mizoram' 'Nagaland' 'Meghalaya' 'Odisha' 'Manipur' 'Puducherry' 'Punjab' 'Sikkim' "
+          "'Tamil Nadu' 'Rajasthan' 'Tripura' 'Uttar Pradesh' 'Telangana' 'Uttarakhand' 'NA' 'West Bengal' 'Arunachal "
+          "Pradesh' 'Assam' 'Bihar' 'Andhra Pradesh' 'Andaman & Nicobar' 'Delhi' 'Goa' 'Gujarat' 'Chandigarh' "
+          "'Chhattisgarh' 'Dadra & Nagar Haveli' 'Daman & Diu' 'Haryana']")
