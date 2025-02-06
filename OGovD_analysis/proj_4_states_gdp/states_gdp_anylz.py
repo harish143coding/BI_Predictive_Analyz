@@ -73,7 +73,7 @@ def get_GDP_choropleth_visual(api_url):
 def get_GDP_interactive_map(api_url):
     """
     This function creates a interactive GSDP visualization for various states in India
-    Parameters
+    Arguments:
     api_url: URL of the API
     """
     params = {
@@ -118,16 +118,88 @@ def get_GDP_interactive_map(api_url):
     interactive_map.save("./interactive_map.html")
     return
 
+
+import pandas as pd
+import folium
+
+
+def create_gdp_growth_map(api_endpoint, year):
+    """
+    Generates an interactive map showing GDP growth for Indian states.
+
+    Parameters:
+    - data: DataFrame containing state-wise GDP growth and coordinates.
+    - year: The year in "YYYY_YY" format (e.g., "2021_22") to visualize growth.
+
+    Returns:
+    - A Folium map object.
+    """
+    params = {
+        "api-key": API_INFO["api_key"],
+        "format": "json",
+        "limit": 10000
+    }
+    response = requests.get(api_endpoint, params)
+    data = response.json()
+    # Create a DataFrame
+    gdp_df = pd.DataFrame(data["records"])
+    geo_sample_df = pd.DataFrame.from_dict(geo_coordinates,
+                                           orient='index',
+                                           columns=["latitude", "longitude"]).reset_index()
+    geo_sample_df.rename(columns={'index': 'States'}, inplace=True)
+    geo_df = gdp_df.merge(geo_sample_df,
+                          how="left",
+                          left_on="state_uts",
+                          right_on="States")
+
+    growth_col = f"growth{year}"
+
+    if growth_col not in geo_df.columns:
+        raise ValueError(f"Column '{growth_col}' not found in data. Check the available columns.")
+
+    # Ensure the growth column is numeric, replacing 'NA' or missing values with 8
+    geo_df[growth_col] = pd.to_numeric(geo_df[growth_col], errors='coerce').fillna(8)
+
+    # Drop rows with missing latitude or longitude to prevent mapping errors
+    geo_df = geo_df.dropna(subset=["latitude", "longitude"])
+
+    # Initialize Folium map centered on India
+    interactive_map = folium.Map(location=[20.5937, 78.9629], zoom_start=5, tiles="CartoDB positron")
+
+    # Add state markers with GDP growth info
+    for _, row in geo_df.iterrows():
+        growth = row[growth_col]
+        color = "green" if growth and growth > 15 else "orange" if growth and growth > 10 else "red"
+        popup_text = f"<b>{row['state_uts']}</b><br>Growth ({year}): {growth}%"
+
+        folium.CircleMarker(
+            location=(row["latitude"], row["longitude"]),
+            radius=10 if growth > 8 else 5,
+            color=color,
+            fill=True,
+            fill_color=color,
+            fill_opacity=0.7,
+            popup=folium.Popup(popup_text, max_width=200),
+        ).add_to(interactive_map)
+
+    return interactive_map
+
+
+
+
+
+
 # test func2 here
 gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda0?"
 
-
-
+year_input = "2021_22"
+gdp_map = create_gdp_growth_map(gsdp_url, year_input)
+gdp_map.save("gdp_growth_map.html")
 
 
 """
 Next Project:
 Geovisualization is done!
 in the next visualizatio india states shape file should be adjusted according to new states
-cntnd.. Test the 2nd function visualization and validate the data itseems that more nulls values in it!
+cntnd.. new fn shld be validate it and the GDP values
 """
