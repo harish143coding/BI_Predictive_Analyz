@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_cf0f83ce60f483598c918fe922b9d3c1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_cf0f83ce60f483598c918fe922b9d3c1" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_cf0f83ce60f483598c918fe922b9d3c1 = L.map(
+                "map_cf0f83ce60f483598c918fe922b9d3c1",
+                {
+                    center: [20.5937, 78.9629],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d7918dfe3428028095f9824f1cc34449 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_d7918dfe3428028095f9824f1cc34449.addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+            var circle_marker_6a52dca451007e0c2bce43df54fb69b2 = L.circleMarker(
+                [14.7504291, 78.57002559],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_02c195e3bc3fc6366f0078e044bad6c3 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_c931b1349603afabcf1a68220af7aab2 = $(`<div id="html_c931b1349603afabcf1a68220af7aab2" style="width: 100.0%; height: 100.0%;"><b>Andhra Pradesh</b><br>Growth (2020_21): 5.0%</div>`)[0];
+                popup_02c195e3bc3fc6366f0078e044bad6c3.setContent(html_c931b1349603afabcf1a68220af7aab2);
+            
+        
+
+        circle_marker_6a52dca451007e0c2bce43df54fb69b2.bindPopup(popup_02c195e3bc3fc6366f0078e044bad6c3)
+        ;
+
+        
+    
+    
+            var circle_marker_1824894d3c3c9f349fc08c36ac93dd23 = L.circleMarker(
+                [27.10039878, 93.61660071],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_521491db4de593139454008d4dad4364 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_e58082eb586c00b93aec531bde66918f = $(`<div id="html_e58082eb586c00b93aec531bde66918f" style="width: 100.0%; height: 100.0%;"><b>Arunachal Pradesh</b><br>Growth (2020_21): 6.49%</div>`)[0];
+                popup_521491db4de593139454008d4dad4364.setContent(html_e58082eb586c00b93aec531bde66918f);
+            
+        
+
+        circle_marker_1824894d3c3c9f349fc08c36ac93dd23.bindPopup(popup_521491db4de593139454008d4dad4364)
+        ;
+
+        
+    
+    
+            var circle_marker_b1b23c63fc1e82b7b6e6b65e6ae8399e = L.circleMarker(
+                [26.7499809, 94.21666744],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_54351102174a3414c6a0a046a70a3312 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_96e9a1f1b647d297bb836568a3e45f21 = $(`<div id="html_96e9a1f1b647d297bb836568a3e45f21" style="width: 100.0%; height: 100.0%;"><b>Assam</b><br>Growth (2020_21): 0.95%</div>`)[0];
+                popup_54351102174a3414c6a0a046a70a3312.setContent(html_96e9a1f1b647d297bb836568a3e45f21);
+            
+        
+
+        circle_marker_b1b23c63fc1e82b7b6e6b65e6ae8399e.bindPopup(popup_54351102174a3414c6a0a046a70a3312)
+        ;
+
+        
+    
+    
+            var circle_marker_7c71b786ceb7d01262d76742b8dc6182 = L.circleMarker(
+                [25.78541445, 87.4799727],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_2995844b85c18b9df24e303d570ff957 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_f3a14b44e0202a2aa2cdb0ca63f62b14 = $(`<div id="html_f3a14b44e0202a2aa2cdb0ca63f62b14" style="width: 100.0%; height: 100.0%;"><b>Bihar</b><br>Growth (2020_21): 4.14%</div>`)[0];
+                popup_2995844b85c18b9df24e303d570ff957.setContent(html_f3a14b44e0202a2aa2cdb0ca63f62b14);
+            
+        
+
+        circle_marker_7c71b786ceb7d01262d76742b8dc6182.bindPopup(popup_2995844b85c18b9df24e303d570ff957)
+        ;
+
+        
+    
+    
+            var circle_marker_c46806761997961c40e492f49cb2936f = L.circleMarker(
+                [22.09042035, 82.15998734],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_553cdb70b82ffb7b5bf7c1b553b4d537 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7feb551e4219f771c9747af604b01f8a = $(`<div id="html_7feb551e4219f771c9747af604b01f8a" style="width: 100.0%; height: 100.0%;"><b>Chhattisgarh</b><br>Growth (2020_21): 1.54%</div>`)[0];
+                popup_553cdb70b82ffb7b5bf7c1b553b4d537.setContent(html_7feb551e4219f771c9747af604b01f8a);
+            
+        
+
+        circle_marker_c46806761997961c40e492f49cb2936f.bindPopup(popup_553cdb70b82ffb7b5bf7c1b553b4d537)
+        ;
+
+        
+    
+    
+            var circle_marker_10a69f1d04328e9293a2eb576289ed1a = L.circleMarker(
+                [15.491997, 73.81800065],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_6c2b759350ac242d65f45faf95278e20 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_d65a98641c4e5bd1d7b99b89ae49449c = $(`<div id="html_d65a98641c4e5bd1d7b99b89ae49449c" style="width: 100.0%; height: 100.0%;"><b>Goa</b><br>Growth (2020_21): 4.69%</div>`)[0];
+                popup_6c2b759350ac242d65f45faf95278e20.setContent(html_d65a98641c4e5bd1d7b99b89ae49449c);
+            
+        
+
+        circle_marker_10a69f1d04328e9293a2eb576289ed1a.bindPopup(popup_6c2b759350ac242d65f45faf95278e20)
+        ;
+
+        
+    
+    
+            var circle_marker_a0d836359d7612142827d0eac5cacf18 = L.circleMarker(
+                [23.030002, 72.580002],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_7bd22f94049f21fe9a068b9ee31f82e3 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_8bd1b2d02dd89643448a69145486f785 = $(`<div id="html_8bd1b2d02dd89643448a69145486f785" style="width: 100.0%; height: 100.0%;"><b>Gujarat</b><br>Growth (2020_21): 1.61%</div>`)[0];
+                popup_7bd22f94049f21fe9a068b9ee31f82e3.setContent(html_8bd1b2d02dd89643448a69145486f785);
+            
+        
+
+        circle_marker_a0d836359d7612142827d0eac5cacf18.bindPopup(popup_7bd22f94049f21fe9a068b9ee31f82e3)
+        ;
+
+        
+    
+    
+            var circle_marker_cc5246434b3fec553a431b81cc20ff38 = L.circleMarker(
+                [29.049998, 76.380002],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_0ca640df505ef54aaad6330515db7e54 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_ed166a38b9c87c5dff50ff8c2584c11f = $(`<div id="html_ed166a38b9c87c5dff50ff8c2584c11f" style="width: 100.0%; height: 100.0%;"><b>Haryana</b><br>Growth (2020_21): -0.46%</div>`)[0];
+                popup_0ca640df505ef54aaad6330515db7e54.setContent(html_ed166a38b9c87c5dff50ff8c2584c11f);
+            
+        
+
+        circle_marker_cc5246434b3fec553a431b81cc20ff38.bindPopup(popup_0ca640df505ef54aaad6330515db7e54)
+        ;
+
+        
+    
+    
+            var circle_marker_09c926fe9e6dcfe228d9377ffcbf4b87 = L.circleMarker(
+                [31.10002545, 77.16659704],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_1c13a72059412fcb2b5c9869d0a81a0d = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_df104ab418228ee01cf32e9ee7351e0e = $(`<div id="html_df104ab418228ee01cf32e9ee7351e0e" style="width: 100.0%; height: 100.0%;"><b>Himachal Pradesh</b><br>Growth (2020_21): -1.56%</div>`)[0];
+                popup_1c13a72059412fcb2b5c9869d0a81a0d.setContent(html_df104ab418228ee01cf32e9ee7351e0e);
+            
+        
+
+        circle_marker_09c926fe9e6dcfe228d9377ffcbf4b87.bindPopup(popup_1c13a72059412fcb2b5c9869d0a81a0d)
+        ;
+
+        
+    
+    
+            var circle_marker_829b95d5e9da36f2b7451849cfbfd30a = L.circleMarker(
+                [23.80039349, 86.41998572],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_ea1175364b156cfc5df482a950773d51 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_bb6953d53434ea4df05accbcd1bdc5d0 = $(`<div id="html_bb6953d53434ea4df05accbcd1bdc5d0" style="width: 100.0%; height: 100.0%;"><b>Jharkhand</b><br>Growth (2020_21): -1.27%</div>`)[0];
+                popup_ea1175364b156cfc5df482a950773d51.setContent(html_bb6953d53434ea4df05accbcd1bdc5d0);
+            
+        
+
+        circle_marker_829b95d5e9da36f2b7451849cfbfd30a.bindPopup(popup_ea1175364b156cfc5df482a950773d51)
+        ;
+
+        
+    
+    
+            var circle_marker_0f0129cecd24b0a713966f38ce2424f3 = L.circleMarker(
+                [12.970198, 77.594566],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_3a8ffa71239196eaf07b6db62b4d669b = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_4936cfacf7a36a41a33b87fb6223910b = $(`<div id="html_4936cfacf7a36a41a33b87fb6223910b" style="width: 100.0%; height: 100.0%;"><b>Karnataka</b><br>Growth (2020_21): 7.15%</div>`)[0];
+                popup_3a8ffa71239196eaf07b6db62b4d669b.setContent(html_4936cfacf7a36a41a33b87fb6223910b);
+            
+        
+
+        circle_marker_0f0129cecd24b0a713966f38ce2424f3.bindPopup(popup_3a8ffa71239196eaf07b6db62b4d669b)
+        ;
+
+        
+    
+    
+            var circle_marker_41a41e5527b82e8042a5371c788e5c0b = L.circleMarker(
+                [9.931229, 76.267303],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_48fdb43e9a797eb4619a31c4c4daa9b1 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_fca444adc3c3eb49fe7683f2a7761fb9 = $(`<div id="html_fca444adc3c3eb49fe7683f2a7761fb9" style="width: 100.0%; height: 100.0%;"><b>Kerala</b><br>Growth (2020_21): -3.01%</div>`)[0];
+                popup_48fdb43e9a797eb4619a31c4c4daa9b1.setContent(html_fca444adc3c3eb49fe7683f2a7761fb9);
+            
+        
+
+        circle_marker_41a41e5527b82e8042a5371c788e5c0b.bindPopup(popup_48fdb43e9a797eb4619a31c4c4daa9b1)
+        ;
+
+        
+    
+    
+            var circle_marker_1995901faf39f89461f160b06c9f4a33 = L.circleMarker(
+                [23.299999, 77.099994],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_972f3ddb4f617efa93c07b60c3da766d = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_3f23d3599ccd6b96f53703b96086391e = $(`<div id="html_3f23d3599ccd6b96f53703b96086391e" style="width: 100.0%; height: 100.0%;"><b>Madhya Pradesh</b><br>Growth (2020_21): 4.01%</div>`)[0];
+                popup_972f3ddb4f617efa93c07b60c3da766d.setContent(html_3f23d3599ccd6b96f53703b96086391e);
+            
+        
+
+        circle_marker_1995901faf39f89461f160b06c9f4a33.bindPopup(popup_972f3ddb4f617efa93c07b60c3da766d)
+        ;
+
+        
+    
+    
+            var circle_marker_9ee52e3a71e74215aff9c6dda6ce6a50 = L.circleMarker(
+                [19.751545, 75.092453],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_1b4d77d9d182c0d7cd265d642e5f2c2b = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_f7656aac55bc6300914e7ff384ce5839 = $(`<div id="html_f7656aac55bc6300914e7ff384ce5839" style="width: 100.0%; height: 100.0%;"><b>Maharashtra</b><br>Growth (2020_21): -0.84%</div>`)[0];
+                popup_1b4d77d9d182c0d7cd265d642e5f2c2b.setContent(html_f7656aac55bc6300914e7ff384ce5839);
+            
+        
+
+        circle_marker_9ee52e3a71e74215aff9c6dda6ce6a50.bindPopup(popup_1b4d77d9d182c0d7cd265d642e5f2c2b)
+        ;
+
+        
+    
+    
+            var circle_marker_c9e9a019c53fd3a8762630a2ee1c3792 = L.circleMarker(
+                [24.663245, 93.938472],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_e4bb3e8fa308f3fece0cfdbd93ce3a6e = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_449860a7da56f247733b71f3b8b39982 = $(`<div id="html_449860a7da56f247733b71f3b8b39982" style="width: 100.0%; height: 100.0%;"><b>Manipur</b><br>Growth (2020_21): 8.99%</div>`)[0];
+                popup_e4bb3e8fa308f3fece0cfdbd93ce3a6e.setContent(html_449860a7da56f247733b71f3b8b39982);
+            
+        
+
+        circle_marker_c9e9a019c53fd3a8762630a2ee1c3792.bindPopup(popup_e4bb3e8fa308f3fece0cfdbd93ce3a6e)
+        ;
+
+        
+    
+    
+            var circle_marker_5fc19581ae6fc518707a4493b5728bd7 = L.circleMarker(
+                [25.576843, 91.883792],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_c45d98aa3b465641b2a3b0980268cde6 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_cea14b19b6b083df10550f4a2a653f40 = $(`<div id="html_cea14b19b6b083df10550f4a2a653f40" style="width: 100.0%; height: 100.0%;"><b>Meghalaya</b><br>Growth (2020_21): -3.69%</div>`)[0];
+                popup_c45d98aa3b465641b2a3b0980268cde6.setContent(html_cea14b19b6b083df10550f4a2a653f40);
+            
+        
+
+        circle_marker_5fc19581ae6fc518707a4493b5728bd7.bindPopup(popup_c45d98aa3b465641b2a3b0980268cde6)
+        ;
+
+        
+    
+    
+            var circle_marker_1ccd3d67eaa1d837c9e1a0215435fc7a = L.circleMarker(
+                [23.910145, 92.796672],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_feee4099bb24691b42f2c0fc303e6c94 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_55f7b0250299cf0c7a59a5d4ed06a1ad = $(`<div id="html_55f7b0250299cf0c7a59a5d4ed06a1ad" style="width: 100.0%; height: 100.0%;"><b>Mizoram</b><br>Growth (2020_21): 15.79%</div>`)[0];
+                popup_feee4099bb24691b42f2c0fc303e6c94.setContent(html_55f7b0250299cf0c7a59a5d4ed06a1ad);
+            
+        
+
+        circle_marker_1ccd3d67eaa1d837c9e1a0215435fc7a.bindPopup(popup_feee4099bb24691b42f2c0fc303e6c94)
+        ;
+
+        
+    
+    
+            var circle_marker_b799b70a480eb4bf75041f5c0b5c3794 = L.circleMarker(
+                [25.661, 94.056],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_30eac314c7e5f6b664aff228174fcc30 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_aa7f5e5e84a0bf67f31486563c6a84f0 = $(`<div id="html_aa7f5e5e84a0bf67f31486563c6a84f0" style="width: 100.0%; height: 100.0%;"><b>Nagaland</b><br>Growth (2020_21): -0.24%</div>`)[0];
+                popup_30eac314c7e5f6b664aff228174fcc30.setContent(html_aa7f5e5e84a0bf67f31486563c6a84f0);
+            
+        
+
+        circle_marker_b799b70a480eb4bf75041f5c0b5c3794.bindPopup(popup_30eac314c7e5f6b664aff228174fcc30)
+        ;
+
+        
+    
+    
+            var circle_marker_95674720a01ca31d1db1d289164a42ce = L.circleMarker(
+                [20.25, 85.833333],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_dc227378fda0aeb3f2c84553f2742f8f = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_c72a348ec0363d8c3a9037436a90df4b = $(`<div id="html_c72a348ec0363d8c3a9037436a90df4b" style="width: 100.0%; height: 100.0%;"><b>Odisha</b><br>Growth (2020_21): -0.64%</div>`)[0];
+                popup_dc227378fda0aeb3f2c84553f2742f8f.setContent(html_c72a348ec0363d8c3a9037436a90df4b);
+            
+        
+
+        circle_marker_95674720a01ca31d1db1d289164a42ce.bindPopup(popup_dc227378fda0aeb3f2c84553f2742f8f)
+        ;
+
+        
+    
+    
+            var circle_marker_d28483c36dcbfe29f29c0a705beb162f = L.circleMarker(
+                [31.0, 75.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_8722bb8430a8f0b3e2d8d6fba4a03fc7 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_dfc57b14ca5a6448658b022bbb92b90b = $(`<div id="html_dfc57b14ca5a6448658b022bbb92b90b" style="width: 100.0%; height: 100.0%;"><b>Punjab</b><br>Growth (2020_21): 0.24%</div>`)[0];
+                popup_8722bb8430a8f0b3e2d8d6fba4a03fc7.setContent(html_dfc57b14ca5a6448658b022bbb92b90b);
+            
+        
+
+        circle_marker_d28483c36dcbfe29f29c0a705beb162f.bindPopup(popup_8722bb8430a8f0b3e2d8d6fba4a03fc7)
+        ;
+
+        
+    
+    
+            var circle_marker_ea9ae9b49da290bc777626e630964e7a = L.circleMarker(
+                [26.449999, 74.639981],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_83ad0ea02b74c44a6c66ec013b8af020 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_392c70b08397d1d56d4a76ec50ba37ac = $(`<div id="html_392c70b08397d1d56d4a76ec50ba37ac" style="width: 100.0%; height: 100.0%;"><b>Rajasthan</b><br>Growth (2020_21): 1.43%</div>`)[0];
+                popup_83ad0ea02b74c44a6c66ec013b8af020.setContent(html_392c70b08397d1d56d4a76ec50ba37ac);
+            
+        
+
+        circle_marker_ea9ae9b49da290bc777626e630964e7a.bindPopup(popup_83ad0ea02b74c44a6c66ec013b8af020)
+        ;
+
+        
+    
+    
+            var circle_marker_9cc1c0637663f84910443ddb65675f44 = L.circleMarker(
+                [27.33333, 88.616647],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_6595b003508b988464f609a6d51fcff4 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7d6c5860fe541479c10c9f6c1854cebb = $(`<div id="html_7d6c5860fe541479c10c9f6c1854cebb" style="width: 100.0%; height: 100.0%;"><b>Sikkim</b><br>Growth (2020_21): 6.22%</div>`)[0];
+                popup_6595b003508b988464f609a6d51fcff4.setContent(html_7d6c5860fe541479c10c9f6c1854cebb);
+            
+        
+
+        circle_marker_9cc1c0637663f84910443ddb65675f44.bindPopup(popup_6595b003508b988464f609a6d51fcff4)
+        ;
+
+        
+    
+    
+            var circle_marker_89becc7a86b85aa9b4d4cf8225431838 = L.circleMarker(
+                [13.08268, 80.270718],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_9f4daf4db98ba63784f752bf12db50d0 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_81329d0fdfec2b0bdccd118be0a165f8 = $(`<div id="html_81329d0fdfec2b0bdccd118be0a165f8" style="width: 100.0%; height: 100.0%;"><b>Tamil Nadu</b><br>Growth (2020_21): 5.87%</div>`)[0];
+                popup_9f4daf4db98ba63784f752bf12db50d0.setContent(html_81329d0fdfec2b0bdccd118be0a165f8);
+            
+        
+
+        circle_marker_89becc7a86b85aa9b4d4cf8225431838.bindPopup(popup_9f4daf4db98ba63784f752bf12db50d0)
+        ;
+
+        
+    
+    
+            var circle_marker_5a1fb4ae9898c69984b7d508e43c373e = L.circleMarker(
+                [17.366748, 78.476674],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_077562e89c4e3f6adb81ac16e505d78a = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_34c65878a7f43a08c1b71b94e18cca00 = $(`<div id="html_34c65878a7f43a08c1b71b94e18cca00" style="width: 100.0%; height: 100.0%;"><b>Telangana</b><br>Growth (2020_21): 2.25%</div>`)[0];
+                popup_077562e89c4e3f6adb81ac16e505d78a.setContent(html_34c65878a7f43a08c1b71b94e18cca00);
+            
+        
+
+        circle_marker_5a1fb4ae9898c69984b7d508e43c373e.bindPopup(popup_077562e89c4e3f6adb81ac16e505d78a)
+        ;
+
+        
+    
+    
+            var circle_marker_fae76d784d6fab43195650d4dc363800 = L.circleMarker(
+                [23.810291, 91.260291],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_94281ce1c460b6a3abeb0c668beaf233 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_3c5a9b73e3bf7efac3d77ed074d30624 = $(`<div id="html_3c5a9b73e3bf7efac3d77ed074d30624" style="width: 100.0%; height: 100.0%;"><b>Tripura</b><br>Growth (2020_21): 5.41%</div>`)[0];
+                popup_94281ce1c460b6a3abeb0c668beaf233.setContent(html_3c5a9b73e3bf7efac3d77ed074d30624);
+            
+        
+
+        circle_marker_fae76d784d6fab43195650d4dc363800.bindPopup(popup_94281ce1c460b6a3abeb0c668beaf233)
+        ;
+
+        
+    
+    
+            var circle_marker_f8b9399f4a0ea9bae5787ec32a8f8883 = L.circleMarker(
+                [26.847, 80.946],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_c375514578be0314858d55cfd8534315 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_e274bafbe630d5ab25d811531718541f = $(`<div id="html_e274bafbe630d5ab25d811531718541f" style="width: 100.0%; height: 100.0%;"><b>Uttar Pradesh</b><br>Growth (2020_21): 0.41%</div>`)[0];
+                popup_c375514578be0314858d55cfd8534315.setContent(html_e274bafbe630d5ab25d811531718541f);
+            
+        
+
+        circle_marker_f8b9399f4a0ea9bae5787ec32a8f8883.bindPopup(popup_c375514578be0314858d55cfd8534315)
+        ;
+
+        
+    
+    
+            var circle_marker_ca5f81bcae41b3b1ed62d3f9f4b477ce = L.circleMarker(
+                [30.31, 78.04],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_31134afa895d45d5cef0dc725ce6273b = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_161e7d0a3debb36d3b94a0c6a9f4da3d = $(`<div id="html_161e7d0a3debb36d3b94a0c6a9f4da3d" style="width: 100.0%; height: 100.0%;"><b>Uttarakhand</b><br>Growth (2020_21): -3.92%</div>`)[0];
+                popup_31134afa895d45d5cef0dc725ce6273b.setContent(html_161e7d0a3debb36d3b94a0c6a9f4da3d);
+            
+        
+
+        circle_marker_ca5f81bcae41b3b1ed62d3f9f4b477ce.bindPopup(popup_31134afa895d45d5cef0dc725ce6273b)
+        ;
+
+        
+    
+    
+            var circle_marker_d47f04bd4bfdf5b57e6ba1b83e8eea5d = L.circleMarker(
+                [22.572656, 88.363892],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_dd4195cec05c30940f9222feb1502bfd = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_11e0154d14271b915830cbb4abac5c60 = $(`<div id="html_11e0154d14271b915830cbb4abac5c60" style="width: 100.0%; height: 100.0%;"><b>West Bengal</b><br>Growth (2020_21): 7.72%</div>`)[0];
+                popup_dd4195cec05c30940f9222feb1502bfd.setContent(html_11e0154d14271b915830cbb4abac5c60);
+            
+        
+
+        circle_marker_d47f04bd4bfdf5b57e6ba1b83e8eea5d.bindPopup(popup_dd4195cec05c30940f9222feb1502bfd)
+        ;
+
+        
+    
+    
+            var circle_marker_dca41add2de9b7ec1f045a3b94a912d9 = L.circleMarker(
+                [30.71999697, 76.78000565],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_afa44972bcc2a9ac1643cce6ef2ee7a7 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_ac98a3cb6d9eb3bcb8af543ca02fac5f = $(`<div id="html_ac98a3cb6d9eb3bcb8af543ca02fac5f" style="width: 100.0%; height: 100.0%;"><b>Chandigarh</b><br>Growth (2020_21): -5.38%</div>`)[0];
+                popup_afa44972bcc2a9ac1643cce6ef2ee7a7.setContent(html_ac98a3cb6d9eb3bcb8af543ca02fac5f);
+            
+        
+
+        circle_marker_dca41add2de9b7ec1f045a3b94a912d9.bindPopup(popup_afa44972bcc2a9ac1643cce6ef2ee7a7)
+        ;
+
+        
+    
+    
+            var circle_marker_3d747556dde0822bebd9f45a709832eb = L.circleMarker(
+                [28.6699929, 77.23000403],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_4ba05ce2821a9a3a8fc47b7803aeb7ee = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_40bcf0287a448765aba37d32605c11d4 = $(`<div id="html_40bcf0287a448765aba37d32605c11d4" style="width: 100.0%; height: 100.0%;"><b>Delhi</b><br>Growth (2020_21): -1.09%</div>`)[0];
+                popup_4ba05ce2821a9a3a8fc47b7803aeb7ee.setContent(html_40bcf0287a448765aba37d32605c11d4);
+            
+        
+
+        circle_marker_3d747556dde0822bebd9f45a709832eb.bindPopup(popup_4ba05ce2821a9a3a8fc47b7803aeb7ee)
+        ;
+
+        
+    
+    
+            var circle_marker_c192570c517418d592f3dd788f0844d7 = L.circleMarker(
+                [11.93381, 79.82979],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_cf0f83ce60f483598c918fe922b9d3c1);
+        
+    
+        var popup_f642c571191384895b157fbc0e2f9b5f = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_5bd2122380da59a57cf557df2d5e1b5c = $(`<div id="html_5bd2122380da59a57cf557df2d5e1b5c" style="width: 100.0%; height: 100.0%;"><b>Puducherry</b><br>Growth (2020_21): -1.62%</div>`)[0];
+                popup_f642c571191384895b157fbc0e2f9b5f.setContent(html_5bd2122380da59a57cf557df2d5e1b5c);
+            
+        
+
+        circle_marker_c192570c517418d592f3dd788f0844d7.bindPopup(popup_f642c571191384895b157fbc0e2f9b5f)
+        ;
+
+        
+    
+</script>
+</html>

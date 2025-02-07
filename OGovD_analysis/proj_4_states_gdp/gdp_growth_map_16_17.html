@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_de1a04a715f81f45a695546f9bcd907c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_de1a04a715f81f45a695546f9bcd907c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_de1a04a715f81f45a695546f9bcd907c = L.map(
+                "map_de1a04a715f81f45a695546f9bcd907c",
+                {
+                    center: [20.5937, 78.9629],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 5,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f68c547a40c95062d780beb2bd19a479 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_f68c547a40c95062d780beb2bd19a479.addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+            var circle_marker_b01d07089637d525ba65554acb3c16b9 = L.circleMarker(
+                [14.7504291, 78.57002559],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_09b4b31dbac82bdbf8c29cebe7875cfc = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_80d6963d79dfe73bb027f079a7d5ab44 = $(`<div id="html_80d6963d79dfe73bb027f079a7d5ab44" style="width: 100.0%; height: 100.0%;"><b>Andhra Pradesh</b><br>Growth (2016_17): 13.27%</div>`)[0];
+                popup_09b4b31dbac82bdbf8c29cebe7875cfc.setContent(html_80d6963d79dfe73bb027f079a7d5ab44);
+            
+        
+
+        circle_marker_b01d07089637d525ba65554acb3c16b9.bindPopup(popup_09b4b31dbac82bdbf8c29cebe7875cfc)
+        ;
+
+        
+    
+    
+            var circle_marker_c3a90a43ed2bbcaf228d8b9afe6da9c7 = L.circleMarker(
+                [27.10039878, 93.61660071],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_a0767ef21be18fb4a0af5886b9b3ea7a = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_80eab93279162a168568013f8ad01bd5 = $(`<div id="html_80eab93279162a168568013f8ad01bd5" style="width: 100.0%; height: 100.0%;"><b>Arunachal Pradesh</b><br>Growth (2016_17): 7.53%</div>`)[0];
+                popup_a0767ef21be18fb4a0af5886b9b3ea7a.setContent(html_80eab93279162a168568013f8ad01bd5);
+            
+        
+
+        circle_marker_c3a90a43ed2bbcaf228d8b9afe6da9c7.bindPopup(popup_a0767ef21be18fb4a0af5886b9b3ea7a)
+        ;
+
+        
+    
+    
+            var circle_marker_00cb06441de0bfe6680fb94492ae70a0 = L.circleMarker(
+                [26.7499809, 94.21666744],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_65dcd4bc6df68e403cd95f10add233c8 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_492f68b335cf299c3bf909854f7a0929 = $(`<div id="html_492f68b335cf299c3bf909854f7a0929" style="width: 100.0%; height: 100.0%;"><b>Assam</b><br>Growth (2016_17): 11.59%</div>`)[0];
+                popup_65dcd4bc6df68e403cd95f10add233c8.setContent(html_492f68b335cf299c3bf909854f7a0929);
+            
+        
+
+        circle_marker_00cb06441de0bfe6680fb94492ae70a0.bindPopup(popup_65dcd4bc6df68e403cd95f10add233c8)
+        ;
+
+        
+    
+    
+            var circle_marker_9b1c9bfe0a90b215860debb0995ea2da = L.circleMarker(
+                [25.78541445, 87.4799727],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_25ac75f6dd1f16dec56bd9429831fe1d = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_3f093d2244afa78238d6c812625e8c73 = $(`<div id="html_3f093d2244afa78238d6c812625e8c73" style="width: 100.0%; height: 100.0%;"><b>Bihar</b><br>Growth (2016_17): 13.31%</div>`)[0];
+                popup_25ac75f6dd1f16dec56bd9429831fe1d.setContent(html_3f093d2244afa78238d6c812625e8c73);
+            
+        
+
+        circle_marker_9b1c9bfe0a90b215860debb0995ea2da.bindPopup(popup_25ac75f6dd1f16dec56bd9429831fe1d)
+        ;
+
+        
+    
+    
+            var circle_marker_f50f40baabae3498c2a73825f7a63f8b = L.circleMarker(
+                [22.09042035, 82.15998734],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_c83db17eb4dc993bf63232b664748f46 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_3bf53dcaab4484b770924f30e3624a59 = $(`<div id="html_3bf53dcaab4484b770924f30e3624a59" style="width: 100.0%; height: 100.0%;"><b>Chhattisgarh</b><br>Growth (2016_17): 16.72%</div>`)[0];
+                popup_c83db17eb4dc993bf63232b664748f46.setContent(html_3bf53dcaab4484b770924f30e3624a59);
+            
+        
+
+        circle_marker_f50f40baabae3498c2a73825f7a63f8b.bindPopup(popup_c83db17eb4dc993bf63232b664748f46)
+        ;
+
+        
+    
+    
+            var circle_marker_776f363d3303db5c215b657167847f38 = L.circleMarker(
+                [15.491997, 73.81800065],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_006c1edfacc29b1eecd91bac4806aadf = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_24141d8912e8c4d367b62e03d8463b33 = $(`<div id="html_24141d8912e8c4d367b62e03d8463b33" style="width: 100.0%; height: 100.0%;"><b>Goa</b><br>Growth (2016_17): 14.39%</div>`)[0];
+                popup_006c1edfacc29b1eecd91bac4806aadf.setContent(html_24141d8912e8c4d367b62e03d8463b33);
+            
+        
+
+        circle_marker_776f363d3303db5c215b657167847f38.bindPopup(popup_006c1edfacc29b1eecd91bac4806aadf)
+        ;
+
+        
+    
+    
+            var circle_marker_009b1e646be3b5110fce3c408aee390e = L.circleMarker(
+                [23.030002, 72.580002],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_9ca4107c751b54d40019238aee5bd830 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_37d0ced531dc650f2942044b50c5f6b2 = $(`<div id="html_37d0ced531dc650f2942044b50c5f6b2" style="width: 100.0%; height: 100.0%;"><b>Gujarat</b><br>Growth (2016_17): 13.43%</div>`)[0];
+                popup_9ca4107c751b54d40019238aee5bd830.setContent(html_37d0ced531dc650f2942044b50c5f6b2);
+            
+        
+
+        circle_marker_009b1e646be3b5110fce3c408aee390e.bindPopup(popup_9ca4107c751b54d40019238aee5bd830)
+        ;
+
+        
+    
+    
+            var circle_marker_95d1b188eb0d5f4f35c984ef3e21bf6b = L.circleMarker(
+                [29.049998, 76.380002],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_b8ced1511295cc9ac32950d1b9132910 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_91071433157c207cfb281fa000b05886 = $(`<div id="html_91071433157c207cfb281fa000b05886" style="width: 100.0%; height: 100.0%;"><b>Haryana</b><br>Growth (2016_17): 13.3%</div>`)[0];
+                popup_b8ced1511295cc9ac32950d1b9132910.setContent(html_91071433157c207cfb281fa000b05886);
+            
+        
+
+        circle_marker_95d1b188eb0d5f4f35c984ef3e21bf6b.bindPopup(popup_b8ced1511295cc9ac32950d1b9132910)
+        ;
+
+        
+    
+    
+            var circle_marker_f272e8ec33cb58867fa12406d9644d6e = L.circleMarker(
+                [31.10002545, 77.16659704],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_eef40ac43a8e3a85e821b2ce736df8d7 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_bda648e7cdf7ba728025cbc3f9ba4f01 = $(`<div id="html_bda648e7cdf7ba728025cbc3f9ba4f01" style="width: 100.0%; height: 100.0%;"><b>Himachal Pradesh</b><br>Growth (2016_17): 9.97%</div>`)[0];
+                popup_eef40ac43a8e3a85e821b2ce736df8d7.setContent(html_bda648e7cdf7ba728025cbc3f9ba4f01);
+            
+        
+
+        circle_marker_f272e8ec33cb58867fa12406d9644d6e.bindPopup(popup_eef40ac43a8e3a85e821b2ce736df8d7)
+        ;
+
+        
+    
+    
+            var circle_marker_8f40f1b23657235a326e21fd4a3ff066 = L.circleMarker(
+                [23.80039349, 86.41998572],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_7729f656d780e0b686186822fe0da4a8 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_a4c2fadd7306a16f1d9800045c265a0b = $(`<div id="html_a4c2fadd7306a16f1d9800045c265a0b" style="width: 100.0%; height: 100.0%;"><b>Jharkhand</b><br>Growth (2016_17): 14.34%</div>`)[0];
+                popup_7729f656d780e0b686186822fe0da4a8.setContent(html_a4c2fadd7306a16f1d9800045c265a0b);
+            
+        
+
+        circle_marker_8f40f1b23657235a326e21fd4a3ff066.bindPopup(popup_7729f656d780e0b686186822fe0da4a8)
+        ;
+
+        
+    
+    
+            var circle_marker_50c0f30d1c4892d23d31689eaea80306 = L.circleMarker(
+                [12.970198, 77.594566],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_549fdf06e604d97e052488b73c1fb31d = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_22a66d6fa7754798190be4d6e4ae63ab = $(`<div id="html_22a66d6fa7754798190be4d6e4ae63ab" style="width: 100.0%; height: 100.0%;"><b>Karnataka</b><br>Growth (2016_17): 15.54%</div>`)[0];
+                popup_549fdf06e604d97e052488b73c1fb31d.setContent(html_22a66d6fa7754798190be4d6e4ae63ab);
+            
+        
+
+        circle_marker_50c0f30d1c4892d23d31689eaea80306.bindPopup(popup_549fdf06e604d97e052488b73c1fb31d)
+        ;
+
+        
+    
+    
+            var circle_marker_595a4adce2484b50b5e2b2d5193f5daa = L.circleMarker(
+                [9.931229, 76.267303],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_0d75edd6cecf548014fed9caac14cb00 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7ea6844a79af62364130d55ddaa87cb9 = $(`<div id="html_7ea6844a79af62364130d55ddaa87cb9" style="width: 100.0%; height: 100.0%;"><b>Kerala</b><br>Growth (2016_17): 12.97%</div>`)[0];
+                popup_0d75edd6cecf548014fed9caac14cb00.setContent(html_7ea6844a79af62364130d55ddaa87cb9);
+            
+        
+
+        circle_marker_595a4adce2484b50b5e2b2d5193f5daa.bindPopup(popup_0d75edd6cecf548014fed9caac14cb00)
+        ;
+
+        
+    
+    
+            var circle_marker_c5512edd482a84ec192849e014b787d1 = L.circleMarker(
+                [23.299999, 77.099994],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_76842df4f04099ff74d62cd862d2d875 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_2858bae4b490f4ddd28c74fd9565d51f = $(`<div id="html_2858bae4b490f4ddd28c74fd9565d51f" style="width: 100.0%; height: 100.0%;"><b>Madhya Pradesh</b><br>Growth (2016_17): 20.1%</div>`)[0];
+                popup_76842df4f04099ff74d62cd862d2d875.setContent(html_2858bae4b490f4ddd28c74fd9565d51f);
+            
+        
+
+        circle_marker_c5512edd482a84ec192849e014b787d1.bindPopup(popup_76842df4f04099ff74d62cd862d2d875)
+        ;
+
+        
+    
+    
+            var circle_marker_4b23bbdce43709bd011d27505873f0e1 = L.circleMarker(
+                [19.751545, 75.092453],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_be9364e00bc996df079a820b6dc42403 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7323ad98df058140555dc5d82c346dcb = $(`<div id="html_7323ad98df058140555dc5d82c346dcb" style="width: 100.0%; height: 100.0%;"><b>Maharashtra</b><br>Growth (2016_17): 11.8%</div>`)[0];
+                popup_be9364e00bc996df079a820b6dc42403.setContent(html_7323ad98df058140555dc5d82c346dcb);
+            
+        
+
+        circle_marker_4b23bbdce43709bd011d27505873f0e1.bindPopup(popup_be9364e00bc996df079a820b6dc42403)
+        ;
+
+        
+    
+    
+            var circle_marker_eecfd18030c30536f1d57b914db949f0 = L.circleMarker(
+                [24.663245, 93.938472],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_381f2a35f9295d14c399a9d2fa952be9 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_65fd0448f56abfe8a5438b9b97bc5e77 = $(`<div id="html_65fd0448f56abfe8a5438b9b97bc5e77" style="width: 100.0%; height: 100.0%;"><b>Manipur</b><br>Growth (2016_17): 9.03%</div>`)[0];
+                popup_381f2a35f9295d14c399a9d2fa952be9.setContent(html_65fd0448f56abfe8a5438b9b97bc5e77);
+            
+        
+
+        circle_marker_eecfd18030c30536f1d57b914db949f0.bindPopup(popup_381f2a35f9295d14c399a9d2fa952be9)
+        ;
+
+        
+    
+    
+            var circle_marker_c1e1cbad51599ffecfb56e871b74eb28 = L.circleMarker(
+                [25.576843, 91.883792],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_52bb013a899c65a64f730f011bf83de7 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_be38dbd126cf68838654961304788412 = $(`<div id="html_be38dbd126cf68838654961304788412" style="width: 100.0%; height: 100.0%;"><b>Meghalaya</b><br>Growth (2016_17): 9.24%</div>`)[0];
+                popup_52bb013a899c65a64f730f011bf83de7.setContent(html_be38dbd126cf68838654961304788412);
+            
+        
+
+        circle_marker_c1e1cbad51599ffecfb56e871b74eb28.bindPopup(popup_52bb013a899c65a64f730f011bf83de7)
+        ;
+
+        
+    
+    
+            var circle_marker_d455ed3ef499d6fe664a5a2580c50aef = L.circleMarker(
+                [23.910145, 92.796672],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_25310904798f57640280fd47b61da608 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_b6cc6a6e7796b1432dcbaae16f68eaec = $(`<div id="html_b6cc6a6e7796b1432dcbaae16f68eaec" style="width: 100.0%; height: 100.0%;"><b>Mizoram</b><br>Growth (2016_17): 13.56%</div>`)[0];
+                popup_25310904798f57640280fd47b61da608.setContent(html_b6cc6a6e7796b1432dcbaae16f68eaec);
+            
+        
+
+        circle_marker_d455ed3ef499d6fe664a5a2580c50aef.bindPopup(popup_25310904798f57640280fd47b61da608)
+        ;
+
+        
+    
+    
+            var circle_marker_7b487b86bcefd0421f5f7e6c110ef5db = L.circleMarker(
+                [25.661, 94.056],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_bba9fddf1eed54c6496468f0356d5523 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_e9d005f4ff38f1637b386f4782800112 = $(`<div id="html_e9d005f4ff38f1637b386f4782800112" style="width: 100.0%; height: 100.0%;"><b>Nagaland</b><br>Growth (2016_17): 11.26%</div>`)[0];
+                popup_bba9fddf1eed54c6496468f0356d5523.setContent(html_e9d005f4ff38f1637b386f4782800112);
+            
+        
+
+        circle_marker_7b487b86bcefd0421f5f7e6c110ef5db.bindPopup(popup_bba9fddf1eed54c6496468f0356d5523)
+        ;
+
+        
+    
+    
+            var circle_marker_f02b0c73d2d4a1e7cc7b0be27b7f38a2 = L.circleMarker(
+                [20.25, 85.833333],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_6a7067e8f69d596e74d2b286bd76ec93 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_8a80fff039d7d8ae0c2471e00e98e563 = $(`<div id="html_8a80fff039d7d8ae0c2471e00e98e563" style="width: 100.0%; height: 100.0%;"><b>Odisha</b><br>Growth (2016_17): 19.56%</div>`)[0];
+                popup_6a7067e8f69d596e74d2b286bd76ec93.setContent(html_8a80fff039d7d8ae0c2471e00e98e563);
+            
+        
+
+        circle_marker_f02b0c73d2d4a1e7cc7b0be27b7f38a2.bindPopup(popup_6a7067e8f69d596e74d2b286bd76ec93)
+        ;
+
+        
+    
+    
+            var circle_marker_118d2842721e112c5dbc57ba8916a97a = L.circleMarker(
+                [31.0, 75.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_53218e306dcddb2564d62a827b530e74 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_772e90e81af036ff049a0bccc550bb20 = $(`<div id="html_772e90e81af036ff049a0bccc550bb20" style="width: 100.0%; height: 100.0%;"><b>Punjab</b><br>Growth (2016_17): 9.46%</div>`)[0];
+                popup_53218e306dcddb2564d62a827b530e74.setContent(html_772e90e81af036ff049a0bccc550bb20);
+            
+        
+
+        circle_marker_118d2842721e112c5dbc57ba8916a97a.bindPopup(popup_53218e306dcddb2564d62a827b530e74)
+        ;
+
+        
+    
+    
+            var circle_marker_37da11b45a05217b103840ee732287e6 = L.circleMarker(
+                [26.449999, 74.639981],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_f0e5683d3fff34bbb770566ff3237a43 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_1f8c156b564994c461dbfa1336ffb863 = $(`<div id="html_1f8c156b564994c461dbfa1336ffb863" style="width: 100.0%; height: 100.0%;"><b>Rajasthan</b><br>Growth (2016_17): 11.61%</div>`)[0];
+                popup_f0e5683d3fff34bbb770566ff3237a43.setContent(html_1f8c156b564994c461dbfa1336ffb863);
+            
+        
+
+        circle_marker_37da11b45a05217b103840ee732287e6.bindPopup(popup_f0e5683d3fff34bbb770566ff3237a43)
+        ;
+
+        
+    
+    
+            var circle_marker_eaecfa7fb05d65ba3555a19a15a8c5d9 = L.circleMarker(
+                [27.33333, 88.616647],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_71990d119171431e511e70d31e87a611 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_31140549c3081a68020bf9f08af1fc7b = $(`<div id="html_31140549c3081a68020bf9f08af1fc7b" style="width: 100.0%; height: 100.0%;"><b>Sikkim</b><br>Growth (2016_17): 14.71%</div>`)[0];
+                popup_71990d119171431e511e70d31e87a611.setContent(html_31140549c3081a68020bf9f08af1fc7b);
+            
+        
+
+        circle_marker_eaecfa7fb05d65ba3555a19a15a8c5d9.bindPopup(popup_71990d119171431e511e70d31e87a611)
+        ;
+
+        
+    
+    
+            var circle_marker_c35205c0b4abe122187eee067778b0a5 = L.circleMarker(
+                [13.08268, 80.270718],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_c8f8cfa082ad89674460a075eee1cd0d = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_d29b7093f9af61a1445ce6e6574d76f9 = $(`<div id="html_d29b7093f9af61a1445ce6e6574d76f9" style="width: 100.0%; height: 100.0%;"><b>Tamil Nadu</b><br>Growth (2016_17): 10.72%</div>`)[0];
+                popup_c8f8cfa082ad89674460a075eee1cd0d.setContent(html_d29b7093f9af61a1445ce6e6574d76f9);
+            
+        
+
+        circle_marker_c35205c0b4abe122187eee067778b0a5.bindPopup(popup_c8f8cfa082ad89674460a075eee1cd0d)
+        ;
+
+        
+    
+    
+            var circle_marker_6435e40c937fbdee966156a76936dacf = L.circleMarker(
+                [17.366748, 78.476674],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_d79a970051ae9f865f374df60c1a4614 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_1f39b0b0e531da9a1638036b8c810bed = $(`<div id="html_1f39b0b0e531da9a1638036b8c810bed" style="width: 100.0%; height: 100.0%;"><b>Telangana</b><br>Growth (2016_17): 13.92%</div>`)[0];
+                popup_d79a970051ae9f865f374df60c1a4614.setContent(html_1f39b0b0e531da9a1638036b8c810bed);
+            
+        
+
+        circle_marker_6435e40c937fbdee966156a76936dacf.bindPopup(popup_d79a970051ae9f865f374df60c1a4614)
+        ;
+
+        
+    
+    
+            var circle_marker_2d71e3f6fdcb15fd82b8fbaa71d3965f = L.circleMarker(
+                [23.810291, 91.260291],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_b148cf31c03a1759831ddac5f1c7e2c6 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_2dbcae9f9b7e0f519396c334caa47b87 = $(`<div id="html_2dbcae9f9b7e0f519396c334caa47b87" style="width: 100.0%; height: 100.0%;"><b>Tripura</b><br>Growth (2016_17): 9.86%</div>`)[0];
+                popup_b148cf31c03a1759831ddac5f1c7e2c6.setContent(html_2dbcae9f9b7e0f519396c334caa47b87);
+            
+        
+
+        circle_marker_2d71e3f6fdcb15fd82b8fbaa71d3965f.bindPopup(popup_b148cf31c03a1759831ddac5f1c7e2c6)
+        ;
+
+        
+    
+    
+            var circle_marker_40bcabd53b8fb7b164c2bf4b5c91a9fe = L.circleMarker(
+                [26.847, 80.946],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_5d545f2f7251b631c893ff6623bef54c = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_7ff7274dff14d1d2d3f7e02cba28c65c = $(`<div id="html_7ff7274dff14d1d2d3f7e02cba28c65c" style="width: 100.0%; height: 100.0%;"><b>Uttar Pradesh</b><br>Growth (2016_17): 13.26%</div>`)[0];
+                popup_5d545f2f7251b631c893ff6623bef54c.setContent(html_7ff7274dff14d1d2d3f7e02cba28c65c);
+            
+        
+
+        circle_marker_40bcabd53b8fb7b164c2bf4b5c91a9fe.bindPopup(popup_5d545f2f7251b631c893ff6623bef54c)
+        ;
+
+        
+    
+    
+            var circle_marker_4a9d3e1292348b604984d5b1f229cdb2 = L.circleMarker(
+                [30.31, 78.04],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_56ff47abd8ae10ad9ffe024b1dc561be = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_fae80660b66ecd8b90f9971f44fe7ca7 = $(`<div id="html_fae80660b66ecd8b90f9971f44fe7ca7" style="width: 100.0%; height: 100.0%;"><b>Uttarakhand</b><br>Growth (2016_17): 10.14%</div>`)[0];
+                popup_56ff47abd8ae10ad9ffe024b1dc561be.setContent(html_fae80660b66ecd8b90f9971f44fe7ca7);
+            
+        
+
+        circle_marker_4a9d3e1292348b604984d5b1f229cdb2.bindPopup(popup_56ff47abd8ae10ad9ffe024b1dc561be)
+        ;
+
+        
+    
+    
+            var circle_marker_c6b8ba6f4affd25e810a93ded59dcd42 = L.circleMarker(
+                [22.572656, 88.363892],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_3dedd2bf28d4e301ef95a5dec0d94ce2 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_a360ccd54301fe9d70f7a8db43c5158e = $(`<div id="html_a360ccd54301fe9d70f7a8db43c5158e" style="width: 100.0%; height: 100.0%;"><b>West Bengal</b><br>Growth (2016_17): 9.44%</div>`)[0];
+                popup_3dedd2bf28d4e301ef95a5dec0d94ce2.setContent(html_a360ccd54301fe9d70f7a8db43c5158e);
+            
+        
+
+        circle_marker_c6b8ba6f4affd25e810a93ded59dcd42.bindPopup(popup_3dedd2bf28d4e301ef95a5dec0d94ce2)
+        ;
+
+        
+    
+    
+            var circle_marker_49b9c6c2415e93b92af2838fb8a0e127 = L.circleMarker(
+                [30.71999697, 76.78000565],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_0f98af51378e0a8f3229099c92605552 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_1d7de89026714167adee3f5cdfdd5a94 = $(`<div id="html_1d7de89026714167adee3f5cdfdd5a94" style="width: 100.0%; height: 100.0%;"><b>Chandigarh</b><br>Growth (2016_17): 10.77%</div>`)[0];
+                popup_0f98af51378e0a8f3229099c92605552.setContent(html_1d7de89026714167adee3f5cdfdd5a94);
+            
+        
+
+        circle_marker_49b9c6c2415e93b92af2838fb8a0e127.bindPopup(popup_0f98af51378e0a8f3229099c92605552)
+        ;
+
+        
+    
+    
+            var circle_marker_8e226a2c77b9719d8c95c2b17270886b = L.circleMarker(
+                [28.6699929, 77.23000403],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_eb366c53f30e5a72b83dddc59043c3bf = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_28dfe85e638c8b43f4218b2645910288 = $(`<div id="html_28dfe85e638c8b43f4218b2645910288" style="width: 100.0%; height: 100.0%;"><b>Delhi</b><br>Growth (2016_17): 11.85%</div>`)[0];
+                popup_eb366c53f30e5a72b83dddc59043c3bf.setContent(html_28dfe85e638c8b43f4218b2645910288);
+            
+        
+
+        circle_marker_8e226a2c77b9719d8c95c2b17270886b.bindPopup(popup_eb366c53f30e5a72b83dddc59043c3bf)
+        ;
+
+        
+    
+    
+            var circle_marker_ca5124e3069179c6ae44abaeedc5988e = L.circleMarker(
+                [11.93381, 79.82979],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_de1a04a715f81f45a695546f9bcd907c);
+        
+    
+        var popup_64fcfe881fd34598d1e21445747ddcf4 = L.popup({"maxWidth": 200});
+
+        
+            
+                var html_097822b6c75bc7bd3090f282c11e2f94 = $(`<div id="html_097822b6c75bc7bd3090f282c11e2f94" style="width: 100.0%; height: 100.0%;"><b>Puducherry</b><br>Growth (2016_17): 11.11%</div>`)[0];
+                popup_64fcfe881fd34598d1e21445747ddcf4.setContent(html_097822b6c75bc7bd3090f282c11e2f94);
+            
+        
+
+        circle_marker_ca5124e3069179c6ae44abaeedc5988e.bindPopup(popup_64fcfe881fd34598d1e21445747ddcf4)
+        ;
+
+        
+    
+</script>
+</html>
