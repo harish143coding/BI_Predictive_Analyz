@@ -2,14 +2,22 @@
 from 2023 November  is loaded Idea -> how to scale the warehouse with further rainfall data Brainstorming
 
 1. how can I get state-wise temperature historical data, so that fact data contains values of monthly temperature
-state-wise. Solu- Func 1 get_temperature_data is created
+state-wise. Extract step is done Solu- Func 1 get_temperature_data is created
+  - Check and Transform the Dataframe
+  - fter that schema should be desine and Load should be executed
 2. Dataset from API: https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2? this API consists of avg_rainfall
 data for all the states approx until 2023. (site: https://www.data.gov.in/apis/a6007b2f-eed3-4a68-a321-d2d563d52bb2)
-Solu - Func 2: process_mean_rainfall_data is created
+Extract step is done Solu - Func 2: process_mean_rainfall_data is created
+  - In Transform step Dataframe shoud be vaidated and  'NA' rows shoud be deleted
+  - After that schema should be desine and Load should be executed
+ETL - Extra for first two facts is done.
 3. the idea is to load atleast data last 40 years from 1980, so that in future ML models can be trained.
+4. the next important fact is AQI
+
 
 available facts : Mean Temperature monthly, state-wise from 1901 to 2021
                  Avg Rainfall state-wise
+                 AQI data
                  next important?
 
 """
@@ -70,7 +78,6 @@ def get_temperature_data(source_file):
 
 
 temperature_data_source = "TEMP_ANNUAL_MEAN_1901-2021.csv"
-
 
 # testing the first fn in Bharat Mausam Dwh
 # print(get_temperature_data(temperature_data_source).head())
@@ -139,7 +146,6 @@ x, y = process_mean_rainfall_data(rainfall_api_endpoint, 1980, 2023)
 print(len(y), y["_state_"].unique())
 
 """
-next steps:
-Nextstep: depending on the start and year fetch all the data from the API as Dataframe afterthat clean the DF for 'NA'..
-then think of loading in DB or other facts! 
+next steps: 
+Nextstep: 2017 to 2021 AQI data is availabe, find any other sources to et AQI data 
 """
