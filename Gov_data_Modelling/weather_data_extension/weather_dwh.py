@@ -12,7 +12,7 @@ Extract step is done Solu - Func 2: process_mean_rainfall_data is created
   - After that schema should be desine and Load should be executed
 ETL - Extra for first two facts is done.
 3. the idea is to load atleast data last 40 years from 1980, so that in future ML models can be trained.
-4. the next important fact is AQI
+4. AQI data is only available from 2017 to 2021. intially Extracting this data
 
 
 available facts : Mean Temperature monthly, state-wise from 1901 to 2021
@@ -142,10 +142,14 @@ def process_mean_rainfall_data(api_endpoint, start_year, end_year):
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-x, y = process_mean_rainfall_data(rainfall_api_endpoint, 1980, 2023)
-print(len(y), y["_state_"].unique())
+#x, y = process_mean_rainfall_data(rainfall_api_endpoint, 1980, 2023)
+#print(len(y), y["_state_"].unique())
+
+
+# Func to Extract AQI data from Indian data portal
+
 
 """
 next steps: 
-Nextstep: 2017 to 2021 AQI data is availabe, find any other sources to et AQI data 
+Nextstep: AQI data in OGD is not in the required format, must be further researched GPT
 """
