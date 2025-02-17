@@ -15,6 +15,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import folium
+from folium.plugins import TimestampedGeoJson
 
 
 gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda0?"
@@ -144,8 +145,15 @@ a, gdp_map = create_gdp_growth_map(gsdp_url, year_input)
 gdp_map.save("gdp_growth_map.html")
 
 
+# Func : To create a Folium Time-series Bubble Map
+
+
+def create_time_series_animation(api_endpoint):
+
+    return
+
 """
 Next Project:
 2nd Geovisualization is done!
-Quick analyze the first 2two functions and start the 3rd type?? 
+3rd visualization continue from GPT solution?? 
 """
