@@ -140,9 +140,9 @@ def create_gdp_growth_map(api_endpoint, year):
 # test func2 here
 gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda0?"
 
-year_input = input(f"enter the desired year in the format as example '2021_21' ")
-a, gdp_map = create_gdp_growth_map(gsdp_url, year_input)
-gdp_map.save("gdp_growth_map.html")
+#year_input = input(f"enter the desired year in the format as example '2021_21' ")
+#a, gdp_map = create_gdp_growth_map(gsdp_url, year_input)
+
 
 
 # Func : To create a Folium Time-series Bubble Map
@@ -150,7 +150,67 @@ gdp_map.save("gdp_growth_map.html")
 
 def create_time_series_animation(api_endpoint):
 
-    return
+
+    params = {
+        "api-key": API_INFO["api_key"],
+        "format": "json",
+        "limit": 10000
+    }
+    response = requests.get(api_endpoint, params)
+    data = response.json()
+    # Create a DataFrame
+    gdp_df = pd.DataFrame(data["records"])
+    geo_sample_df = pd.DataFrame.from_dict(geo_coordinates,
+                                           orient='index',
+                                           columns=["latitude", "longitude"]).reset_index()
+    geo_sample_df.rename(columns={'index': 'States'}, inplace=True)
+    geo_df = gdp_df.merge(geo_sample_df,
+                          how="left",
+                          left_on="state_uts",
+                          right_on="States")
+
+    # Transform into time-series GeoJSON format
+    features = []
+    for _, row in geo_df.iterrows():
+        for year in range(2012, 2022):  # Change year range accordingly
+            year_str = f"_growth{year}_{str(year + 1)[-2:]}"  # Format: growthYYYY_YY
+            # Convert GDP growth values to numeric, default to 8 if missing
+            growth = pd.to_numeric(row.get(year_str, 8), errors="coerce")
+            # Default 8 if missing
+
+            feature = {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [row["longitude"], row["latitude"]]},
+                "properties": {
+                    "style": {"color": "green" if growth > 15 else "orange" if growth > 8 else "gray"},
+                    "popup": f"<b>{row['state_uts']}</b><br>GDP Growth ({year}-{year + 1}): {growth}%"
+                },
+                "time": f"{year}-01-01T00:00:00Z"
+            }
+            features.append(feature)
+
+    # Create the Time-Series Map
+    m = folium.Map(location=[20.5937, 78.9629], zoom_start=5, tiles="CartoDB positron")
+
+    # Add Timestamped GeoJSON Layer
+    TimestampedGeoJson(
+        {"type": "FeatureCollection", "features": features},
+        period="P1Y",  # 1 Year per step
+        add_last_point=True,
+        duration="PT2S",  # Each step lasts 2 seconds
+        auto_play=True,
+        loop=True
+    ).add_to(m)
+
+    # Save and Display
+
+
+    return geo_df, m
+
+# Test func 3
+gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda0?"
+df, map = create_time_series_animation(gsdp_url)
+map.save("time_series_gdp_map.html")
 
 """
 Next Project:
