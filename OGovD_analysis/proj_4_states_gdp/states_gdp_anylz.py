@@ -149,8 +149,13 @@ gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda
 
 
 def create_time_series_animation(api_endpoint):
+    """
+    Func to create time series visualization gor GDP growth data
+    parameters
+    api_endpoint
+    """
 
-
+    # Fetch API Data
     params = {
         "api-key": API_INFO["api_key"],
         "format": "json",
@@ -158,53 +163,55 @@ def create_time_series_animation(api_endpoint):
     }
     response = requests.get(api_endpoint, params)
     data = response.json()
+
     # Create a DataFrame
     gdp_df = pd.DataFrame(data["records"])
-    geo_sample_df = pd.DataFrame.from_dict(geo_coordinates,
-                                           orient='index',
+    geo_sample_df = pd.DataFrame.from_dict(geo_coordinates, orient='index',
                                            columns=["latitude", "longitude"]).reset_index()
     geo_sample_df.rename(columns={'index': 'States'}, inplace=True)
-    geo_df = gdp_df.merge(geo_sample_df,
-                          how="left",
-                          left_on="state_uts",
-                          right_on="States")
 
-    # Transform into time-series GeoJSON format
+    # Merge GDP and Geo Data
+    geo_df = gdp_df.merge(geo_sample_df, how="left", left_on="state_uts", right_on="States")
+
+    # ✅ Fix 1: Convert GDP Growth to Numeric and Handle Missing Values
+    for year in range(2012, 2022):  # Change year range accordingly
+        year_str = f"_growth{year}_{str(year + 1)[-2:]}"
+        geo_df[year_str] = pd.to_numeric(geo_df[year_str], errors="coerce").fillna(8.0)
+
+    # ✅ Fix 2: Drop Rows with Missing Lat/Lon
+    geo_df = geo_df.dropna(subset=["latitude", "longitude"])
+
+    # ✅ Fix 3: Create a Valid GeoJSON Feature List
     features = []
     for _, row in geo_df.iterrows():
         for year in range(2012, 2022):  # Change year range accordingly
-            year_str = f"_growth{year}_{str(year + 1)[-2:]}"  # Format: growthYYYY_YY
-            # Convert GDP growth values to numeric, default to 8 if missing
-            growth = pd.to_numeric(row.get(year_str, 8), errors="coerce")
-            # Default 8 if missing
+            year_str = f"_growth{year}_{str(year + 1)[-2:]}"
+            growth = row[year_str]  # ✅ Already converted to float
 
             feature = {
                 "type": "Feature",
                 "geometry": {"type": "Point", "coordinates": [row["longitude"], row["latitude"]]},
                 "properties": {
-                    "style": {"color": "green" if growth > 15 else "orange" if growth > 8 else "gray"},
-                    "popup": f"<b>{row['state_uts']}</b><br>GDP Growth ({year}-{year + 1}): {growth}%"
-                },
-                "time": f"{year}-01-01T00:00:00Z"
+                    "time": f"{year}-01-01T00:00:00Z",
+                    "popup": f"<b>{row['state_uts']}</b><br>GDP Growth ({year}-{year + 1}): {growth}%",
+                    "style": {"color": "green" if growth > 15 else "orange" if growth > 8 else "gray"}
+                }
+
             }
             features.append(feature)
 
-    # Create the Time-Series Map
+    # ✅ Fix 4: Ensure the Map is Created Correctly
     m = folium.Map(location=[20.5937, 78.9629], zoom_start=5, tiles="CartoDB positron")
 
     # Add Timestamped GeoJSON Layer
     TimestampedGeoJson(
         {"type": "FeatureCollection", "features": features},
-        period="P1Y",  # 1 Year per step
+        period="P1Y",
         add_last_point=True,
-        duration="PT2S",  # Each step lasts 2 seconds
+        duration="PT2S",
         auto_play=True,
         loop=True
     ).add_to(m)
-
-    # Save and Display
-
-
     return geo_df, m
 
 # Test func 3
@@ -215,5 +222,5 @@ map.save("time_series_gdp_map.html")
 """
 Next Project:
 2nd Geovisualization is done!
-3rd visualization continue from GPT solution?? 
+I3rd visualization color error ?? 
 """
