@@ -154,9 +154,16 @@ func shoud be formuated to etract AQI data
 stations should be mapped
 """
 
-data = pd.read_csv("station_day.csv")
-data.info()
+aqi_data = pd.read_csv("station_day.csv")
+aqi_data.drop(columns=["Benzene", "Toluene", "Xylene"], inplace=True)
+aqi_stations = pd.read_csv("stations.csv")
+new_df = aqi_data.merge(right=aqi_stations, how="outer", on="StationId")
+aqi_data.info()
+aqi_data.describe()
+
+# Test
+
 """
 next steps: 
-Nextstep: AQI data should be processed and extracted
+Nextstep: AQI data is Extracted into new dataframe, process according to requirement
 """
