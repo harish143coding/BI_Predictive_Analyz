@@ -82,7 +82,7 @@ def get_temperature_data(source_file):
 temperature_data_source = "TEMP_ANNUAL_MEAN_1901-2021.csv"
 
 # testing the first fn in Bharat Mausam Dwh
-# print(get_temperature_data(temperature_data_source).head())
+temperature_df = get_temperature_data(temperature_data_source)
 
 
 def process_mean_rainfall_data(api_endpoint, start_year, end_year):
@@ -91,7 +91,7 @@ def process_mean_rainfall_data(api_endpoint, start_year, end_year):
     state-wise, monthly rainfall data
     arguments
     Api_endpoint: endpoint of the available API
-    start_year: the first year from which the average rainfall_data needed to be etched from the API
+    start_year: the first year from which the average rainfall_data needed to be fetched from the API
     end_year: similarly last year
     returns: length of the total records fetched and dataframe with mean rainfall state-wise
     """
@@ -144,7 +144,7 @@ def process_mean_rainfall_data(api_endpoint, start_year, end_year):
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-#x, y = process_mean_rainfall_data(rainfall_api_endpoint, 1980, 2023)
+total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 1980, 2023)
 #print(len(y), y["_state_"].unique())
 
 
@@ -154,15 +154,28 @@ func shoud be formuated to etract AQI data
 stations should be mapped
 """
 
-aqi_data = pd.read_csv("station_day.csv")
-aqi_data.drop(columns=["Benzene", "Toluene", "Xylene"], inplace=True)
-aqi_stations = pd.read_csv("stations.csv")
-new_df = aqi_data.merge(right=aqi_stations, how="outer", on="StationId")
-aqi_data.info()
-aqi_data.describe()
 
-# Test
+def process_aqi_data(input_file_1, input_file_2):
+    """
+    this Func takes AQI data from a 2 CSV inputs one with various AQI metrics and station ID
+    and other file with station geographical information
 
+    returns: a merged AQI DF after processing both files
+    """
+
+    aqi_data = pd.read_csv(input_file_1)
+    aqi_data.drop(columns=["Benzene", "Toluene", "Xylene"], inplace=True)
+    aqi_stations = pd.read_csv(input_file_2)
+    final_aqi_df = aqi_data.merge(right=aqi_stations, how="outer", on="StationId")
+    aqi_data.info()
+    aqi_data.describe()
+    return final_aqi_df
+
+
+#  func 3
+file_1 = "station_day.csv"
+file_2 = "stations.csv"
+aqi_df = process_aqi_data(file_1, file_2)
 """
 next steps: 
 Nextstep: AQI data is Extracted into new dataframe, process according to requirement
