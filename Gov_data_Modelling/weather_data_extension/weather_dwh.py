@@ -144,7 +144,7 @@ def process_mean_rainfall_data(api_endpoint, start_year, end_year):
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 1980, 2023)
+total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 2022, 2023)
 #print(len(y), y["_state_"].unique())
 
 
@@ -176,6 +176,7 @@ def process_aqi_data(input_file_1, input_file_2):
 file_1 = "station_day.csv"
 file_2 = "stations.csv"
 aqi_df = process_aqi_data(file_1, file_2)
+aqi_df.describe()
 """
 next steps: 
 Nextstep: AQI data is Extracted into new dataframe, process according to requirement
