@@ -82,7 +82,7 @@ def get_temperature_data(source_file):
 temperature_data_source = "TEMP_ANNUAL_MEAN_1901-2021.csv"
 
 # testing the first fn in Bharat Mausam Dwh
-temperature_df = get_temperature_data(temperature_data_source)
+#temperature_df = get_temperature_data(temperature_data_source)
 
 
 def process_mean_rainfall_data(api_endpoint, start_year, end_year):
@@ -144,7 +144,7 @@ def process_mean_rainfall_data(api_endpoint, start_year, end_year):
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 2022, 2023)
+#total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 2022, 2023)
 #print(len(y), y["_state_"].unique())
 
 
@@ -167,8 +167,6 @@ def process_aqi_data(input_file_1, input_file_2):
     aqi_data.drop(columns=["Benzene", "Toluene", "Xylene"], inplace=True)
     aqi_stations = pd.read_csv(input_file_2)
     final_aqi_df = aqi_data.merge(right=aqi_stations, how="outer", on="StationId")
-    aqi_data.info()
-    aqi_data.describe()
     return final_aqi_df
 
 
@@ -179,5 +177,5 @@ aqi_df = process_aqi_data(file_1, file_2)
 aqi_df.describe()
 """
 next steps: 
-Nextstep: AQI data is Extracted into new dataframe, process according to requirement
+Nextstep: Brainstorming about the schema is done, star schema is choosed, should builded further GPT guided.
 """
