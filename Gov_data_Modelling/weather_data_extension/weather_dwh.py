@@ -177,5 +177,4 @@ aqi_df = process_aqi_data(file_1, file_2)
 aqi_df.describe()
 """
 next steps: 
-Nextstep: Brainstorming about the schema is done, star schema is choosed, should builded further GPT guided.
 """
