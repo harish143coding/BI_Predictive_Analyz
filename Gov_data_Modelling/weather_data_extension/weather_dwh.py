@@ -82,7 +82,7 @@ def get_temperature_data(source_file):
 temperature_data_source = "TEMP_ANNUAL_MEAN_1901-2021.csv"
 
 # testing the first fn in Bharat Mausam Dwh
-#temperature_df = get_temperature_data(temperature_data_source)
+temperature_df = get_temperature_data(temperature_data_source)
 
 
 def process_mean_rainfall_data(api_endpoint, start_year, end_year):
@@ -144,7 +144,7 @@ def process_mean_rainfall_data(api_endpoint, start_year, end_year):
 
 # Test the Rainfall function
 rainfall_api_endpoint = "https://api.data.gov.in/catalog/a6007b2f-eed3-4a68-a321-d2d563d52bb2?"
-#total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 2022, 2023)
+total_records, rainfall_df = process_mean_rainfall_data(rainfall_api_endpoint, 2022, 2023)
 #print(len(y), y["_state_"].unique())
 
 
