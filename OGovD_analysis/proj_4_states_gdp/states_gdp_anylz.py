@@ -150,7 +150,7 @@ gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda
 
 def create_time_series_animation(api_endpoint):
     """
-    Func to create time series visualization gor GDP growth data
+    Func to create time series visualization for GDP growth data
     parameters
     api_endpoint
     """
@@ -210,7 +210,10 @@ def create_time_series_animation(api_endpoint):
         add_last_point=True,
         duration="PT2S",
         auto_play=True,
-        loop=True
+        loop=True,
+        date_options='YYYY-MM-DD',
+        time_slider_drag_update=True,
+
     ).add_to(m)
     return geo_df, m
 
@@ -219,8 +222,41 @@ gsdp_url = "https://api.data.gov.in/resource/adb4b1da-159f-46b3-a9c0-0545fe9ddda
 df, map = create_time_series_animation(gsdp_url)
 map.save("time_series_gdp_map.html")
 
+
+# Alternative to 3rd function trying with library Ploty as folium new version not supporting that Visualisation
+def generate_timelapse_with_ploty():
+    import plotly.express as px
+    import pandas as pd
+
+    # Example DataFrame with columns: state, latitude, longitude, growth, year
+    df = pd.DataFrame({
+        "state": ["Andhra Pradesh", "Arunachal Pradesh", "Assam"] * 5,
+        "latitude": [15.9129, 28.2170, 26.2006] * 5,
+        "longitude": [79.7400, 94.7278, 92.9376] * 5,
+        "growth": [18.47, 12.93, 11.31, 15.0, 8.0, 9.0, 20.0, 10.0, 13.5, 16.0, 14.0, 12.0, 19.0, 9.0, 11.0],
+        "year": [2012, 2012, 2012, 2014, 2014, 2014, 2016, 2016, 2016, 2018, 2018, 2018, 2020, 2020, 2020]
+    })
+
+    # Create an animated scatter map using Plotly Express
+    fig = px.scatter_mapbox(
+        df,
+        lat="latitude",
+        lon="longitude",
+        color="growth",
+        size="growth",
+        hover_name="state",
+        animation_frame="year",
+        mapbox_style="carto-positron",
+        zoom=4,
+        center={"lat": 20.5937, "lon": 78.9629},
+        title="Time-Series GDP Growth Map"
+    )
+    fig.show()
+    return
+
+
 """
 Next Project:
 2nd Geovisualization is done!
-I3rd visualization color error ?? 
+3rd visualization color error ?? 
 """
