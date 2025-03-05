@@ -258,5 +258,5 @@ def generate_timelapse_with_ploty():
 """
 Next Project:
 2nd Geovisualization is done!
-3rd visualization color error ?? 
+Alternative to folium plotly in 4th Func should be tested?? 
 """
