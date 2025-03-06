@@ -76,5 +76,5 @@ rainfall_fact.show()
 
 """
 Nextstep: 1. temperature dataframe months should be arranged properly and then test Time dimension schema
-2. code replaced with Pyspark library! 
+Pyspark installed, review the code and go to previous step
 """
