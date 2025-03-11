@@ -66,8 +66,13 @@ def get_temperature_data(source_file, state_weights):
     return result_df
 
 
+
+# Testin the 1st func with
+
+sampe_df = get_temperature_data("TEMP_ANNUAL_MEAN_1901-2021.csv")
+print(sampe_df.head())
+
 """
 Next steps
-test the first extraction function in Spark 
+testin the Spark code, should supply the weights and compare with pandas extractor
 """
-
