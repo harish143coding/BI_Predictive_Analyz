@@ -74,5 +74,6 @@ print(sampe_df.head())
 
 """
 Next steps
-testin the Spark code, should supply the weights and compare with pandas extractor
+testing the Spark code, should supply the weights and compare with pandas extractor
+--> continue from reading/validation from the line 36 
 """
