@@ -75,5 +75,8 @@ print(sampe_df.head())
 """
 Next steps
 testing the Spark code, should supply the weights and compare with pandas extractor
---> continue from reading/validation from the line 36 
+--> reading/validation done
+check this error
+  raise PySparkRuntimeError(
+pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
 """
