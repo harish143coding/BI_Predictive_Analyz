@@ -79,4 +79,16 @@ testing the Spark code, should supply the weights and compare with pandas extrac
 check this error
   raise PySparkRuntimeError(
 pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java gateway process exited before sending its port number.
+
+4. Run PySpark in Standalone Mode
+Before running your script, try initializing PySpark manually:
+
+pgsql
+Copy
+Edit
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("Test").getOrCreate()
+print(spark.version)
+
+Chatggpt says if above fails then problem Enviroment
 """
