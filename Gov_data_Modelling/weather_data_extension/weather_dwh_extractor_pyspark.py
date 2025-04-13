@@ -73,7 +73,7 @@ sampe_df = get_temperature_data("TEMP_ANNUAL_MEAN_1901-2021.csv")
 print(sampe_df.head())
 
 """
-Next steps
+Next steps : JAVA should be installed follow chatgpt command
 testing the Spark code, should supply the weights and compare with pandas extractor
 --> reading/validation done
 check this error
@@ -83,12 +83,5 @@ pyspark.errors.exceptions.base.PySparkRuntimeError: [JAVA_GATEWAY_EXITED] Java g
 4. Run PySpark in Standalone Mode
 Before running your script, try initializing PySpark manually:
 
-pgsql
-Copy
-Edit
-from pyspark.sql import SparkSession
-spark = SparkSession.builder.appName("Test").getOrCreate()
-print(spark.version)
-
-Chatggpt says if above fails then problem Enviroment
+Ah, there it is — the root cause: Java is not installed or not properly added to your system's PATH.
 """
